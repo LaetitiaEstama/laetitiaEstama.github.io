@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leyley — Portfolio de Laëtitia Estama</title>
+  <meta name="description" content="Portfolio de Laëtitia Estama (Leyley), étudiante ingénieure à l'ESIEE Paris : design audacieux, code poétique, accès universel." />
+
+  <link rel="icon" type="image/x-icon" href="img/favicon/logo_jaune_mono-favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/logo_jaune_mono-favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/logo_jaune_mono-favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="intro-active">
+
+  <!-- Lien d'évitement, tout premier élément du body -->
+  <a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+  <!-- Animation d'intro plein écran -->
+  <div class="ecran-intro" id="ecran-intro" aria-hidden="true">
+    <p class="intro-titre">portfolio</p>
+    <p class="intro-nom">Laëtitia Estama</p>
+  </div>
+
+  <!-- Navigation pill flottante -->
+  <nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+    <a href="#" class="nav-logo" aria-label="Leyley — retour à l'accueil">
+      <img src="img/logo_png/logo_leyley-YELLOW.png" alt="" />
+    </a>
+
+    <ul class="nav-liens">
+      <li><a href="#projets" class="nav-lien">Projets</a></li>
+      <li><a href="#apropos" class="nav-lien">À propos</a></li>
+      <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+      <li><a href="#" class="nav-lien">Expériences</a></li>
+    </ul>
+
+    <a href="#contact" class="nav-cta">Me contacter</a>
+
+    <button
+      type="button"
+      class="nav-burger"
+      id="nav-burger"
+      aria-expanded="false"
+      aria-controls="nav-menu-mobile"
+      aria-label="Ouvrir le menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Menu mobile en overlay (hors de .nav-pill pour ne pas hériter de son transform au scroll) -->
+  <div class="nav-menu-mobile" id="nav-menu-mobile">
+    <ul>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#">Expériences</a></li>
+    </ul>
+  </div>
+
+  <main id="contenu-principal" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="section-hero">
+      <div class="hero-interieur">
+        <div class="hero-gauche">
+          <div class="hero-bulles">
+            <span class="bulle bulle-verte">Disponible · Sept. 2026</span>
+            <span class="bulle bulle-orange">Alternance · Île-de-France</span>
+          </div>
+
+          <h1 class="hero-titre">
+            <span>Ingénieure</span>
+            <span>&amp; Designer</span>
+          </h1>
+
+          <p class="hero-sous-titre">Systèmes · Accessibilité · Multimédia</p>
+
+          <p class="hero-texte">
+            Je construis des systèmes qui fonctionnent et
+            des interfaces accessibles à tout le monde.<br />
+            ESIEE Paris · Ingénierie informatique · 2026
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projets" class="bouton-jaune">Mes projets ↓</a>
+            <a href="#contact" class="bouton-rose">Me contacter</a>
+          </div>
+        </div>
+
+        <div class="hero-droite">
+          <!-- Note : remplacer ce div par une balise <img> quand Leyley fournira une vraie photo -->
+          <div class="hero-photo">
+            <p>📸 Photo à venir</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section class="section-projets" id="projets">
+      <h2 class="titre-section">Mes projets</h2>
+
+      <div class="filtres" role="group" aria-label="Filtrer les projets par catégorie">
+        <!-- Les boutons de filtre sont générés par projets.js depuis window.CATEGORIES -->
+      </div>
+
+      <div class="grille-projets" id="grille-projets" aria-live="polite">
+        <!-- Les cartes projet sont injectées par projets.js -->
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="section-apropos" id="apropos">
+      <div class="apropos-interieur">
+        <div class="apropos-gauche">
+          <p class="apropos-eyebrow">À propos</p>
+          <h2 class="apropos-titre">Construire des systèmes. Concevoir pour tous.</h2>
+          <p class="apropos-texte">
+            Je m'appelle Laëtitia, étudiante en ingénierie
+            informatique à ESIEE Paris dès septembre 2026.
+            Mon parcours mêle le développement de systèmes
+            (Python, réseaux IP, protocoles), le design
+            d'interfaces accessibles (WCAG AAA) et la
+            production multimédia — avec toujours le même
+            objectif : que ça marche pour tout le monde.
+          </p>
+
+          <div class="apropos-objectifs">
+            <h3 class="apropos-objectifs-titre">Ce vers quoi je travaille</h3>
+            <ul class="objectifs-liste">
+              <li class="objectif-item"><span aria-hidden="true">→</span> Maîtriser l'architecture logicielle et les systèmes embarqués</li>
+              <li class="objectif-item"><span aria-hidden="true">→</span> Contribuer à des projets d'accessibilité numérique à grande échelle</li>
+              <li class="objectif-item"><span aria-hidden="true">→</span> Développer une alternative open-source aux outils de régie AV propriétaires</li>
+            </ul>
+          </div>
+
+          <!-- TODO : remplacer par le chemin réel du CV -->
+          <a href="#" class="bouton-vert">Télécharger mon CV →</a>
+        </div>
+
+        <div class="apropos-droite">
+          <p class="competences-label">Stack technique</p>
+
+          <div class="competences-groupe competences-groupe--ingenierie">
+            <h3 class="competences-groupe__titre">Ingénierie</h3>
+            <ul>
+              <li class="competence-tag">Python</li>
+              <li class="competence-tag">TCP/IP</li>
+              <li class="competence-tag">ONVIF</li>
+              <li class="competence-tag">Réseaux</li>
+            </ul>
+          </div>
+
+          <div class="competences-groupe competences-groupe--devweb">
+            <h3 class="competences-groupe__titre">Dev web</h3>
+            <ul>
+              <li class="competence-tag">PHP</li>
+              <li class="competence-tag">MySQL</li>
+              <li class="competence-tag">HTML/CSS</li>
+              <li class="competence-tag">JS</li>
+            </ul>
+          </div>
+
+          <div class="competences-groupe competences-groupe--accessibilite">
+            <h3 class="competences-groupe__titre">Accessibilité</h3>
+            <ul>
+              <li class="competence-tag">WCAG AAA</li>
+              <li class="competence-tag">RGAA</li>
+              <li class="competence-tag">ARIA</li>
+            </ul>
+          </div>
+
+          <div class="competences-groupe competences-groupe--outils">
+            <h3 class="competences-groupe__titre">Outils</h3>
+            <ul>
+              <li class="competence-tag">OBS</li>
+              <li class="competence-tag">Figma</li>
+              <li class="competence-tag">SolidPython</li>
+              <li class="competence-tag">Git</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CARTE CONTACT FLOTTANTE -->
+  <section class="section-carte-contact" id="contact">
+    <div class="carte-contact">
+      <h2 class="carte-contact__titre">Une idée ? Un projet ? Une opportunité ? Écris-moi.</h2>
+
+      <!-- TODO : remplacer REMPLACER_PAR_TON_ID par l'identifiant réel du formulaire Formspree -->
+      <form class="formulaire-contact" id="formulaire-contact" action="https://formspree.io/f/REMPLACER_PAR_TON_ID" method="POST">
+        <div class="formulaire-contact__colonnes">
+          <div class="formulaire-contact__col-gauche">
+            <div class="champ-groupe">
+              <label for="champ-prenom">Prénom</label>
+              <input type="text" id="champ-prenom" name="prenom" required aria-required="true" />
+            </div>
+            <div class="champ-groupe">
+              <label for="champ-email">Email</label>
+              <input type="email" id="champ-email" name="email" required aria-required="true" />
+            </div>
+          </div>
+
+          <div class="champ-groupe formulaire-contact__col-droite">
+            <label for="champ-message">Message</label>
+            <textarea id="champ-message" name="message" required aria-required="true"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="bouton-envoi">Envoyer →</button>
+
+        <p class="confirmation" id="confirmation-formulaire" role="status" hidden>
+          Message reçu 🤍 Je reviens vers toi vite.
+        </p>
+      </form>
+
+      <!-- Palmier décoratif -->
+      <svg class="carte-contact__palmier" aria-hidden="true" viewBox="0 0 100 140" width="90" height="120">
+        <rect x="46" y="60" width="8" height="70" fill="#6B4226" rx="3" />
+        <path d="M50 60 C 20 50, 10 20, 30 10 C 35 30, 45 45, 50 60 Z" fill="#18542A" />
+        <path d="M50 60 C 80 50, 90 20, 70 10 C 65 30, 55 45, 50 60 Z" fill="#18542A" />
+        <path d="M50 60 C 30 45, 20 25, 35 5 C 42 25, 48 45, 50 60 Z" fill="#2E7D44" />
+        <path d="M50 60 C 70 45, 80 25, 65 5 C 58 25, 52 45, 50 60 Z" fill="#2E7D44" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- PIED DE PAGE -->
+  <footer class="pied-de-page">
+    <div class="pied-de-page__interieur">
+      <a href="#" class="pied-logo">
+        <img src="img/logo_png/logo_leyley-YELLOW.png" alt="Leyley — retour à l'accueil" />
+      </a>
+
+      <ul class="pied-liens">
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#projets">Mes projets</a></li>
+        <!-- TODO : créer la section "Mes expériences" et mettre à jour ce lien -->
+        <li><a href="#">Mes expériences</a></li>
+      </ul>
+
+      <ul class="pied-reseaux" aria-label="Me retrouver">
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par le lien LinkedIn réel -->
+          <a href="#" aria-label="Me retrouver sur LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.63 1.34 2.97 2.98 2.97 1.63 0 2.97-1.34 2.97-2.97C7.95 4.84 6.61 3.5 4.98 3.5zM2.4 21.5h5.16V8.98H2.4V21.5zM9.5 8.98v12.52h5.15v-6.2c0-1.64.31-3.23 2.34-3.23 2 0 2.03 1.87 2.03 3.34v6.09H24v-6.86c0-4.27-2.3-6.26-5.36-6.26-2.47 0-3.57 1.36-4.19 2.32h-.06V8.98H9.5z"/></svg>
+          </a>
+        </li>
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par le lien GitHub réel -->
+          <a href="#" aria-label="Me retrouver sur GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.5 0 12.3c0 5.43 3.44 10.04 8.21 11.67.6.12.82-.27.82-.6 0-.3-.01-1.08-.02-2.12-3.34.75-4.04-1.66-4.04-1.66-.55-1.43-1.34-1.82-1.34-1.82-1.09-.77.08-.75.08-.75 1.2.09 1.84 1.27 1.84 1.27 1.07 1.88 2.81 1.34 3.5 1.02.11-.79.41-1.34.74-1.65-2.67-.31-5.47-1.38-5.47-6.15 0-1.36.47-2.47 1.24-3.34-.12-.31-.54-1.56.12-3.25 0 0 1.01-.33 3.3 1.27a11.3 11.3 0 0 1 6 0c2.29-1.6 3.3-1.27 3.3-1.27.66 1.69.24 2.94.12 3.25.77.87 1.24 1.98 1.24 3.34 0 4.78-2.81 5.84-5.49 6.15.43.38.81 1.13.81 2.28 0 1.65-.02 2.98-.02 3.39 0 .33.22.72.82.6C20.56 22.34 24 17.73 24 12.3 24 5.5 18.63 0 12 0z"/></svg>
+          </a>
+        </li>
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par l'adresse e-mail réelle -->
+          <a href="mailto:contact@leyley.fr" aria-label="M'envoyer un e-mail">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm19.4 2.3-8.6 6.4a1 1 0 0 1-1.2 0L2 6.3V18h20zM3 5l9 6.7L21 5H3z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="pied-bas">
+      <p>© 2026 Leyley – Laëtitia Estama</p>
+    </div>
+  </footer>
+
+  <script src="projets.js"></script>
+</body>
+</html>

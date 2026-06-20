@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m http.server 8089)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8089/index.html)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(chromium-cli --session portfolio)",
+      "Bash(npm ls *)",
+      "Bash(python3 -c \"import playwright\")",
+      "Bash(pip show *)",
+      "Bash(npm -v)",
+      "Bash(cd /tmp)",
+      "Bash(npx --yes playwright@1.48.0 --version)",
+      "Bash(npx --yes playwright@1.48.0 install chromium)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=0 node -e \"require.resolve\\('playwright'\\)\")",
+      "Bash(npm install *)",
+      "Bash(node verify.js)",
+      "Bash(node -e \"console.log\\(process.cwd\\(\\)\\)\")",
+      "Read(//c//**)",
+      "Bash(find /c -maxdepth 3 -iname \"Temp\")",
+      "Read(//c/Users/Etudiant/AppData/Local/Temp/**)",
+      "Bash(rm -rf /c/laragon/www/portfolio_2026/_verify_tmp)",
+      "Bash(kill %1)",
+      "Bash(node verify2.js)",
+      "Bash(rm -rf _verify_tmp)",
+      "Bash(pkill -f \"http.server 8090\")",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "Bash(node verify3.js)",
+      "Bash(node check-1280.js)",
+      "Bash(node verify4.js)",
+      "Bash(python3 -c ' *)",
+      "Bash(pkill -f \"http.server 8101\")",
+      "Bash(nohup python3 -m http.server 8101)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8101/index.html)"
+    ]
+  }
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot autonome WALL-E | Projet — Laëtitia Estama</title>
+  <meta name="description" content="Robot mobile autonome sur plateforme MegaPi Ultimate 2.0, capable de détecter, saisir et ramener un objet sans intervention humaine." />
+
+  <link rel="icon" type="image/x-icon" href="../img/favicon/logo_jaune_mono-favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/logo_jaune_mono-favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- Lien d'évitement, tout premier élément du body -->
+  <a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+  <!-- Navigation pill flottante -->
+  <nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+    <a href="../index.html" class="nav-logo" aria-label="Leyley — retour à l'accueil">
+      <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
+    </a>
+
+    <ul class="nav-liens">
+      <li><a href="../index.html#projets" class="nav-lien">Projets</a></li>
+      <li><a href="../index.html#apropos" class="nav-lien">À propos</a></li>
+      <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+      <li><a href="#" class="nav-lien">Expériences</a></li>
+    </ul>
+
+    <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+
+    <button
+      type="button"
+      class="nav-burger"
+      id="nav-burger"
+      aria-expanded="false"
+      aria-controls="nav-menu-mobile"
+      aria-label="Ouvrir le menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Menu mobile en overlay -->
+  <div class="nav-menu-mobile" id="nav-menu-mobile">
+    <ul>
+      <li><a href="../index.html#projets">Projets</a></li>
+      <li><a href="../index.html#apropos">À propos</a></li>
+      <li><a href="#">Expériences</a></li>
+    </ul>
+  </div>
+
+  <main id="contenu-principal" tabindex="-1">
+
+    <!-- Fil d'Ariane -->
+    <nav class="fil-ariane" aria-label="Fil d'Ariane">
+      <a href="../index.html">Accueil</a>
+      <span class="separateur" aria-hidden="true">/</span>
+      <a href="../index.html#projets">Projets</a>
+      <span class="separateur" aria-hidden="true">/</span>
+      <span aria-current="page">Robot autonome WALL-E</span>
+    </nav>
+
+    <!-- En-tête du projet -->
+    <header class="fiche-cover" style="background-color: #18542A;">
+      <div class="fiche-cover__interieur">
+        <span class="fiche-eyebrow">Projet · Ingénierie &amp; Systèmes</span>
+        <h1 class="fiche-titre">Robot autonome WALL-E</h1>
+        <p class="fiche-lede">Robot mobile autonome construit sur plateforme MegaPi Ultimate 2.0, capable de détecter, saisir et ramener un objet sans intervention humaine — projet de groupe en M1 MIASHS.</p>
+        <div class="fiche-meta-row">
+          <div class="fiche-meta-chip"><b>Rôle</b><span class="separateur" aria-hidden="true"> · </span><span class="reste">Documentation, journal de bord, rédaction rapport</span></div>
+          <div class="fiche-meta-chip"><b>Stack</b><span class="separateur" aria-hidden="true"> · </span><span class="reste">MegaPi Ultimate 2.0, Python, C++ Arduino</span></div>
+          <div class="fiche-meta-chip"><b>Statut</b><span class="separateur" aria-hidden="true"> · </span><span class="reste">Terminé · M1 MIASHS · Groupe · 2026</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="fiche-corps">
+
+      <section class="fiche-section" aria-labelledby="contexte">
+        <h2 id="contexte" class="fiche-section-titre">Contexte</h2>
+        <p>Dans le cadre d'un projet d'électronique en M1 MIASHS, l'équipe devait concevoir un robot mobile entièrement autonome capable d'accomplir une mission complète : repérer un objet, le saisir, puis revenir à son point de départ sans aucune télécommande ni intervention extérieure. La plateforme retenue était un châssis MegaPi Ultimate 2.0.</p>
+      </section>
+
+      <section class="fiche-section" aria-labelledby="probleme-solution">
+        <h2 id="probleme-solution" class="fiche-section-titre">Problème &amp; solution</h2>
+        <div class="fiche-grid2">
+          <div>
+            <span class="fiche-label fiche-label--probleme">Problème</span>
+            <p>Le châssis MegaPi est livré pour un pilotage à distance, pas pour l'autonomie : aucune brique existante ne permettait de détecter un objet, de le saisir, puis de retracer le chemin du retour sans aide extérieure.</p>
+          </div>
+          <div>
+            <span class="fiche-label fiche-label--solution">Solution construite</span>
+            <p>Une architecture hybride en deux temps : un prototype Python pour itérer rapidement sur la calibration des capteurs en pilotant le robot en mode esclave depuis un PC, puis une réécriture complète en C++ embarqué pour l'autonomie réelle, avec un algorithme de backtracking LIFO qui mémorise le trajet aller pour le rejouer à l'envers au retour.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="fiche-section" aria-labelledby="stack">
+        <h2 id="stack" class="fiche-section-titre">Stack technique</h2>
+        <div class="fiche-stack-grid">
+          <div class="fiche-stack-carte">
+            <div class="fiche-stack-categorie">Plateforme</div>
+            <ul class="fiche-stack-liste">
+              <li>MegaPi Ultimate 2.0</li>
+              <li>Moteurs DC + roues</li>
+              <li>Capteurs ultrason / IR</li>
+              <li>Pince de saisie</li>
+            </ul>
+          </div>
+          <div class="fiche-stack-carte">
+            <div class="fiche-stack-categorie">Développement</div>
+            <ul class="fiche-stack-liste">
+              <li>Python (prototypage)</li>
+              <li>C++ Arduino (embarqué)</li>
+              <li>Mode esclave PC ↔ robot</li>
+              <li>Calibration des capteurs</li>
+            </ul>
+          </div>
+          <div class="fiche-stack-carte">
+            <div class="fiche-stack-categorie">Algorithmes</div>
+            <ul class="fiche-stack-liste">
+              <li>Détection d'objet</li>
+              <li>Séquence de saisie</li>
+              <li>Backtracking LIFO (retour)</li>
+              <li>Tests terrain standardisés</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="fiche-section" aria-labelledby="demarche">
+        <h2 id="demarche" class="fiche-section-titre">Démarche technique</h2>
+        <div class="fiche-process-row">
+          <div class="fiche-etape">
+            <div class="fiche-etape-numero">01</div>
+            <div class="fiche-etape-titre">Prototypage Python</div>
+            <div class="fiche-etape-desc">Pilotage en mode esclave depuis un PC pour calibrer rapidement les capteurs de distance et ajuster les seuils de détection sans recompiler à chaque essai.</div>
+          </div>
+          <div class="fiche-etape">
+            <div class="fiche-etape-numero">02</div>
+            <div class="fiche-etape-titre">Migration C++ embarqué</div>
+            <div class="fiche-etape-desc">Réécriture complète de la logique pour une exécution autonome sur la carte, avec une recalibration totale des capteurs une fois le code embarqué.</div>
+          </div>
+          <div class="fiche-etape">
+            <div class="fiche-etape-numero">03</div>
+            <div class="fiche-etape-titre">Tests en conditions réelles</div>
+            <div class="fiche-etape-desc">10 tentatives sur un sol standardisé pour mesurer la fiabilité de la détection, de la saisie et du retour autonome.</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="fiche-resultats" aria-labelledby="resultats">
+      <div class="fiche-resultats-interieur">
+        <h2 id="resultats" class="fiche-section-titre">Résultats</h2>
+        <div class="fiche-resultats-grid">
+          <div class="fiche-resultat"><div class="fiche-resultat-nombre">90%</div><div class="fiche-resultat-label">taux de succès</div></div>
+          <div class="fiche-resultat"><div class="fiche-resultat-nombre">5</div><div class="fiche-resultat-label">semaines de développement</div></div>
+          <div class="fiche-resultat"><div class="fiche-resultat-nombre">10</div><div class="fiche-resultat-label">tests réalisés</div></div>
+          <div class="fiche-resultat"><div class="fiche-resultat-nombre">45 min</div><div class="fiche-resultat-label">d'autonomie</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fiche-corps">
+      <section class="fiche-section" aria-labelledby="demontre">
+        <h2 id="demontre" class="fiche-section-titre">Ce que ce projet démontre</h2>
+        <p>Documenter un système robotique en cours de construction : tenir un journal de bord rigoureux des erreurs de calibration et des échecs de test, puis structurer un rapport technique qui rend lisible une architecture hybride Python/C++ pour une équipe et un jury.</p>
+      </section>
+
+      <a class="fiche-retour" href="../index.html#projets">← Retour aux projets</a>
+    </div>
+
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer class="pied-de-page">
+    <div class="pied-de-page__interieur">
+      <a href="../index.html" class="pied-logo">
+        <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="Leyley — retour à l'accueil" />
+      </a>
+
+      <ul class="pied-liens">
+        <li><a href="../index.html#apropos">À propos</a></li>
+        <li><a href="../index.html#projets">Mes projets</a></li>
+        <!-- TODO : créer la section "Mes expériences" et mettre à jour ce lien -->
+        <li><a href="#">Mes expériences</a></li>
+      </ul>
+
+      <ul class="pied-reseaux" aria-label="Me retrouver">
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par le lien LinkedIn réel -->
+          <a href="#" aria-label="Me retrouver sur LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.63 1.34 2.97 2.98 2.97 1.63 0 2.97-1.34 2.97-2.97C7.95 4.84 6.61 3.5 4.98 3.5zM2.4 21.5h5.16V8.98H2.4V21.5zM9.5 8.98v12.52h5.15v-6.2c0-1.64.31-3.23 2.34-3.23 2 0 2.03 1.87 2.03 3.34v6.09H24v-6.86c0-4.27-2.3-6.26-5.36-6.26-2.47 0-3.57 1.36-4.19 2.32h-.06V8.98H9.5z"/></svg>
+          </a>
+        </li>
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par le lien GitHub réel -->
+          <a href="#" aria-label="Me retrouver sur GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.5 0 12.3c0 5.43 3.44 10.04 8.21 11.67.6.12.82-.27.82-.6 0-.3-.01-1.08-.02-2.12-3.34.75-4.04-1.66-4.04-1.66-.55-1.43-1.34-1.82-1.34-1.82-1.09-.77.08-.75.08-.75 1.2.09 1.84 1.27 1.84 1.27 1.07 1.88 2.81 1.34 3.5 1.02.11-.79.41-1.34.74-1.65-2.67-.31-5.47-1.38-5.47-6.15 0-1.36.47-2.47 1.24-3.34-.12-.31-.54-1.56.12-3.25 0 0 1.01-.33 3.3 1.27a11.3 11.3 0 0 1 6 0c2.29-1.6 3.3-1.27 3.3-1.27.66 1.69.24 2.94.12 3.25.77.87 1.24 1.98 1.24 3.34 0 4.78-2.81 5.84-5.49 6.15.43.38.81 1.13.81 2.28 0 1.65-.02 2.98-.02 3.39 0 .33.22.72.82.6C20.56 22.34 24 17.73 24 12.3 24 5.5 18.63 0 12 0z"/></svg>
+          </a>
+        </li>
+        <li>
+          <span class="pied-reseaux__feuille" aria-hidden="true">🌿</span>
+          <!-- TODO : remplacer par l'adresse e-mail réelle -->
+          <a href="mailto:contact@leyley.fr" aria-label="M'envoyer un e-mail">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm19.4 2.3-8.6 6.4a1 1 0 0 1-1.2 0L2 6.3V18h20zM3 5l9 6.7L21 5H3z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="pied-bas">
+      <p>© 2026 Leyley – Laëtitia Estama</p>
+    </div>
+  </footer>
+
+  <!-- projets.js s'auto-initialise (nav-pill au scroll, menu mobile) ;
+       les fonctions liées à la grille de projets et au formulaire se
+       désactivent automatiquement quand leurs éléments sont absents -->
+  <script src="../projets.js"></script>
+</body>
+</html>
