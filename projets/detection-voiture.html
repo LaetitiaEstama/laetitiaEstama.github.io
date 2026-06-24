@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Détection de voitures vertes par segmentation couleur | Projet — Laëtitia Estama</title>
+<title>Détection de voitures vertes par segmentation couleur | Projet - Laëtitia Estama</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
@@ -15,7 +15,7 @@
 <meta name="description" content="Détection de voitures vertes par segmentation K-means en espace colorimétrique Lab et rétroprojection d'histogramme, projet de Master MIASHS." />
 
 <!-- Open Graph / Twitter -->
-<meta property="og:title" content="Détection couleur K-means — Leyley" />
+<meta property="og:title" content="Détection couleur K-means - Leyley" />
 <meta property="og:description" content="Détection de voitures vertes par segmentation K-means en espace colorimétrique Lab et rétroprojection d'histogramme. Contribution principale : cadre théorique colorimétrique et intégration." />
 <meta property="og:image" content="../img/og-image.png" />
 <meta property="og:type" content="article" />
@@ -310,7 +310,7 @@
 
 <!-- Navigation pill flottante -->
 <nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
-  <a href="../index.html" class="nav-logo" aria-label="Leyley — retour à l'accueil">
+  <a href="../index.html" class="nav-logo" aria-label="Leyley - retour à l'accueil">
     <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
   </a>
 
@@ -372,7 +372,7 @@
     <section aria-labelledby="contexte">
       <h2 id="contexte">Contexte</h2>
       <p>Dans le cadre du cours de Traitement des Signaux en Master MIASHS, notre groupe a développé un système de détection automatique de voitures vertes dans une image bruitée (wooden_cars_noisy.png, 460×460 px).</p>
-      <p>Le défi principal venait de la couleur cible elle-même : les voitures vertes sont peintes dans une teinte pastel peu saturée (R≈0.70, G≈0.71, B≈0.54). Le canal vert ne domine le rouge que très légèrement (ratio G/R≈1.03), ce qui rend le seuillage naïf inopérant et les opérations morphologiques inutilisables — l'érosion sur un noyau 3×3 réduisait le masque de 52 000 à 408 pixels.</p>
+      <p>Le défi principal venait de la couleur cible elle-même : les voitures vertes sont peintes dans une teinte pastel peu saturée (R≈0.70, G≈0.71, B≈0.54). Le canal vert ne domine le rouge que très légèrement (ratio G/R≈1.03), ce qui rend le seuillage naïf inopérant et les opérations morphologiques inutilisables - l'érosion sur un noyau 3×3 réduisait le masque de 52 000 à 408 pixels.</p>
       <div class="tags-projet" aria-label="Technologies du projet">
         <span class="tag-projet">Python</span>
         <span class="tag-projet">OpenCV</span>
@@ -398,9 +398,9 @@
         </div>
         <div>
           <span class="label solution">3 méthodes explorées</span>
-          <p><b>Méthode 1 — Seuillage RGB :</b> filtrage par aire minimale (&gt; 500 px²) à la place des opérations morphologiques. Résultat : 1 voiture détectée, bounding box (x=51, y=167, w=179, h=120).</p>
-          <p><b>Méthode 2 — K-means en espace Lab :</b> K=8 clusters, identification automatique du cluster vert via a* &lt; 120. Plus généraliste, aucun seuil manuel de couleur.</p>
-          <p><b>Méthode 3 — Fusion K-means + rétroprojection :</b> intersection logique AND des deux masques. Réduit les faux positifs de chaque méthode seule.</p>
+          <p><b>Méthode 1 - Seuillage RGB :</b> filtrage par aire minimale (&gt; 500 px²) à la place des opérations morphologiques. Résultat : 1 voiture détectée, bounding box (x=51, y=167, w=179, h=120).</p>
+          <p><b>Méthode 2 - K-means en espace Lab :</b> K=8 clusters, identification automatique du cluster vert via a* &lt; 120. Plus généraliste, aucun seuil manuel de couleur.</p>
+          <p><b>Méthode 3 - Fusion K-means + rétroprojection :</b> intersection logique AND des deux masques. Réduit les faux positifs de chaque méthode seule.</p>
         </div>
       </div>
     </section>
@@ -414,7 +414,7 @@
         <div class="step">
           <div class="step-num">01</div>
           <div class="step-title">Pourquoi l'espace Lab ?</div>
-          <div class="step-desc">En RGB, luminosité et couleur sont mélangées : une voiture verte à l'ombre semble aussi sombre qu'une voiture noire. L'espace CIE L*a*b* sépare L* (luminosité), a* (axe vert↔rouge) et b* (axe bleu↔jaune). Travailler sur a* seul rend la détection indépendante de l'éclairage. En espace Lab OpenCV, le vert donne a* &lt; 120, le rouge a* &gt; 140 — distinction nette.</div>
+          <div class="step-desc">En RGB, luminosité et couleur sont mélangées : une voiture verte à l'ombre semble aussi sombre qu'une voiture noire. L'espace CIE L*a*b* sépare L* (luminosité), a* (axe vert↔rouge) et b* (axe bleu↔jaune). Travailler sur a* seul rend la détection indépendante de l'éclairage. En espace Lab OpenCV, le vert donne a* &lt; 120, le rouge a* &gt; 140 - distinction nette.</div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
@@ -480,7 +480,7 @@
   <div class="wrap demontre">
     <section aria-labelledby="demontre-titre">
       <h2 id="demontre-titre">Ce que ce projet démontre</h2>
-      <p>Ce projet illustre une compétence clé en traitement du signal : savoir choisir et justifier son espace de travail avant de coder. Passer de RGB à Lab n'est pas un détail d'implémentation — c'est le choix qui rend le problème soluble.</p>
+      <p>Ce projet illustre une compétence clé en traitement du signal : savoir choisir et justifier son espace de travail avant de coder. Passer de RGB à Lab n'est pas un détail d'implémentation - c'est le choix qui rend le problème soluble.</p>
       <p>Il montre aussi que les outils standards ne s'appliquent pas mécaniquement : les opérations morphologiques, habituellement recommandées pour nettoyer les masques, se sont révélées destructives sur cette image en raison de sa faible saturation. Adapter l'outil au contexte est plus important que de l'appliquer par défaut.</p>
     </section>
   </div>

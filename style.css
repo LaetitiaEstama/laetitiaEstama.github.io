@@ -112,7 +112,7 @@ button {
 }
 
 /* ============================================
-   ACCESSIBILITÉ — FOCUS & LIEN D'ÉVITEMENT
+   ACCESSIBILITÉ - FOCUS & LIEN D'ÉVITEMENT
    ============================================ */
 
 :focus-visible {
@@ -242,7 +242,7 @@ body:not(.intro-active) .entete {
 }
 
 /* ============================================
-   NAVIGATION — PILL FLOTTANTE
+   NAVIGATION - PILL FLOTTANTE
    ============================================ */
 
 .nav-pill {
