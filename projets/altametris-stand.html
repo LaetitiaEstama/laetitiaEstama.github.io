@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habillage Stand - Salon SIFER 2025 | Projet - Laëtitia Estama</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/logo_jaune_mono-favicon-16x16.png" />
+<link rel="icon" type="image/x-icon" href="../img/favicon/logo_jaune_mono-favicon.ico" />
+<link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+<meta name="description" content="Habillage visuel complet du stand Altametris au salon ferroviaire SIFER 2025 : mockups 3D pour validation avant impression, intégration des logos des filiales SNCF Réseau." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Habillage Stand SIFER 2025 - Leyley" />
+<meta property="og:description" content="Habillage visuel complet du stand Altametris au salon ferroviaire SIFER 2025. Mockups 3D pour validation avant impression, intégration des logos des filiales SNCF Réseau, cohérence identité visuelle." />
+<meta property="og:image" content="../img/og-image.png" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../img/og-image.png" />
+
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Black.ttf') format('truetype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+
+  :root{
+    --cream:#F5F0E8;
+    --ink:#1A1A1A;
+    --orange:#C44A08;
+    --green:#18542A;
+    --blue:#0C447C;
+    --purple:#5B4B9A;
+    --yellow:#ffc926;
+    --rose:#C4005A;
+    --couleur-fond:#0C447C;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height:1.6;
+  }
+  a{color:#7A2E00;}
+  a:focus-visible, button:focus-visible{outline:3px solid #7A2E00; outline-offset:2px;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* Lien d'évitement */
+  .lien-evitement{
+    position:absolute; left:1rem; top:-100px;
+    background:var(--ink); color:var(--cream);
+    padding:0.75rem 1.25rem; border-radius:0.5rem;
+    font-weight:600; text-decoration:none;
+    z-index:3000; transition:top .2s ease;
+  }
+  .lien-evitement:focus-visible{top:1rem;}
+
+  /* Navigation pill flottante (identique à index.html) */
+  .nav-pill{
+    position:fixed; top:20px; left:50%; z-index:2000;
+    display:flex; align-items:center; gap:1.25rem;
+    width:calc(100% - 2rem); max-width:700px; margin:0 auto;
+    background:var(--ink); border-radius:999px;
+    padding:0.5rem 0.75rem 0.5rem 0.5rem;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    transform:translateX(-50%);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .nav-pill--reduite{
+    transform:translateX(-50%) scale(0.97);
+    box-shadow:0 12px 40px rgba(0,0,0,0.32);
+  }
+  .nav-logo{flex-shrink:0; height:32px; width:54.75px; overflow:hidden; display:flex;}
+  .nav-logo img{
+    height:62.5px; width:62.5px; max-width:none;
+    margin-left:-4.5px; margin-top:-13.81px;
+  }
+  .nav-liens{display:flex; align-items:center; justify-content:center; gap:1.25rem; flex:1; list-style:none;}
+  .nav-lien{font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:14px; color:#fff; opacity:.7; transition:opacity .2s ease; text-decoration:none;}
+  .nav-lien:hover{opacity:1;}
+  .nav-cta{
+    background:var(--yellow); color:var(--ink);
+    font-family:'Outfit',sans-serif; font-weight:700; font-size:14px;
+    padding:8px 20px; border-radius:999px; white-space:nowrap; flex-shrink:0;
+    transition:background-color .2s ease, color .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .nav-cta:hover{background:#7A2E00; color:#fff;}
+  .nav-burger{
+    display:none; flex-direction:column; justify-content:space-between;
+    gap:4px; width:22px; height:16px; flex-shrink:0;
+    background:none; border:none; cursor:pointer; padding:0;
+  }
+  .nav-burger span{display:block; width:100%; height:2px; background:#fff;}
+  .nav-menu-mobile{
+    position:fixed; inset:0; z-index:1900; background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    transform:translateY(-100%); transition:transform .3s ease;
+  }
+  .nav-menu-mobile--ouvert{transform:translateY(0);}
+  .nav-menu-mobile ul{display:flex; flex-direction:column; align-items:center; gap:2rem; list-style:none;}
+  .nav-menu-mobile a{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.5rem; color:var(--cream); text-decoration:none;}
+
+  @media (max-width:640px){
+    .nav-liens{display:none;}
+    .nav-burger{display:flex;}
+    .nav-pill{gap:.75rem;}
+    .nav-cta{padding:8px 14px; font-size:13px;}
+  }
+
+  header.cover{
+    background:var(--couleur-fond);
+    color:#fff;
+    padding:112px 0 48px;
+  }
+
+  /* Fil d'Ariane */
+  .fil-ariane{
+    list-style:none; display:flex; gap:8px; flex-wrap:wrap;
+    font-size:12px; color:#fff;
+    margin-bottom:20px;
+  }
+  .fil-ariane a{color:#fff; font-weight:500; text-decoration:none;}
+  .fil-ariane a:hover{text-decoration:underline;}
+
+  .eyebrow{
+    display:inline-block;
+    background-color:#1A1A1A;
+    color:var(--yellow);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Outfit',sans-serif;
+    font-weight:900;
+    font-size:clamp(30px,5vw,50px);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .lede{
+    font-size:17px;
+    color:#D8D4CB;
+    max-width:560px;
+    margin-bottom:28px;
+  }
+  .meta-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .meta-chip{
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:500;
+  }
+  .meta-chip b{font-weight:600; color:#fff;}
+  .meta-chip span.sep{color:#A9A49A; margin:0 2px;}
+  .meta-chip .rest{color:#C9C5BB;}
+
+  main{padding-top:48px;}
+  section{margin-bottom:48px;}
+  h2{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--couleur-fond);
+    border-bottom:2px solid var(--couleur-fond);
+    padding-bottom:8px;
+    margin-bottom:20px;
+    display:inline-block;
+  }
+  p{font-size:15px; max-width:680px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .label{
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:8px; display:block;
+  }
+  .label.problem{color:var(--couleur-fond);}
+  .label.solution{color:var(--green);}
+
+  /* Tags projet */
+  .tags-projet{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .tag-projet{
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:999px;
+    padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
+  }
+
+  .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
+  .step-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--couleur-fond); color:#fff;
+    font-family:'Outfit',sans-serif; font-weight:900; font-size:18px;
+    padding:4px 12px; border-radius:8px; margin-bottom:10px;
+  }
+  .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
+  .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
+
+  /* Cards livrables (remplace un schéma SVG) */
+  .livrables-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:8px;
+  }
+  .livrable-card{
+    background:#fff;
+    border:1px solid var(--couleur-fond);
+    border-radius:12px;
+    padding:20px;
+  }
+  .livrable-icone{
+    color:var(--couleur-fond);
+    margin-bottom:12px;
+  }
+  .livrable-titre{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--couleur-fond);
+    margin-bottom:6px;
+  }
+  .livrable-detail{
+    font-size:13px;
+    color:#595959;
+  }
+
+  .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
+  .results h2{color:var(--yellow); border-bottom-color:var(--yellow);}
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .result-card{text-align:center;}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:var(--yellow);}
+  .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
+
+  .demontre{padding-top:48px;}
+
+  .wrap.wide{max-width:1140px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* Navigation entre projets */
+  .nav-projets{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:32px 0; border-top:1px solid rgba(0,0,0,0.08);
+    font-size:14px; font-weight:600;
+  }
+  .nav-projets a{color:#7A2E00; text-decoration:none;}
+  .nav-projets a:hover{text-decoration:underline;}
+
+  footer{padding:40px 0 60px;}
+  .back-link{color:#7A2E00; font-size:14px; font-weight:600; text-decoration:none;}
+  .back-link:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    .grid2, .stack-grid, .process-row, .livrables-grid{grid-template-columns:1fr;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+<!-- Navigation pill flottante -->
+<nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Leyley - retour à l'accueil">
+    <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
+  </a>
+
+  <ul class="nav-liens">
+    <li><a href="../index.html#projets" class="nav-lien">Projets</a></li>
+    <li><a href="../index.html#apropos" class="nav-lien">À propos</a></li>
+    <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+    <li><a href="#" class="nav-lien">Expériences</a></li>
+  </ul>
+
+  <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+
+  <button
+    type="button"
+    class="nav-burger"
+    id="nav-burger"
+    aria-expanded="false"
+    aria-controls="nav-menu-mobile"
+    aria-label="Ouvrir le menu"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Menu mobile en overlay -->
+<div class="nav-menu-mobile" id="nav-menu-mobile">
+  <ul>
+    <li><a href="../index.html#projets">Projets</a></li>
+    <li><a href="../index.html#apropos">À propos</a></li>
+    <li><a href="#">Expériences</a></li>
+  </ul>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="fil-ariane">
+        <li><a href="../index.html">Accueil</a></li>
+        <li aria-hidden="true">→</li>
+        <li><a href="../index.html#projets">Projets</a></li>
+        <li aria-hidden="true">→</li>
+        <li aria-current="page">Habillage Stand SIFER 2025</li>
+      </ol>
+    </nav>
+    <span class="eyebrow">Graphisme · Print · Stage · SNCF Réseau</span>
+    <h1>Habillage Stand - Salon SIFER 2025</h1>
+    <p class="lede">Stage Altametris · Filiale SNCF Réseau · 2025</p>
+    <div class="meta-row">
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Designer graphique</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2025</span></div>
+      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Terminé - stand installé au salon</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="contenu-principal" tabindex="-1">
+  <div class="wrap">
+
+    <section aria-labelledby="contexte">
+      <h2 id="contexte">Contexte</h2>
+      <p>Dans le cadre de mon stage chez Altametris, filiale de SNCF Réseau, j'ai participé à la préparation de la présence de l'entreprise au Salon SIFER 2025 - un événement professionnel majeur dédié à l'industrie ferroviaire.</p>
+      <p>L'entreprise disposait d'un stand sobre et fonctionnel, mais avait besoin d'un habillage visuel attractif pour représenter son identité ainsi que celle des différentes filiales de SNCF Réseau. Ma mission : concevoir des visuels graphiques pour rendre ce stand plus vivant, professionnel et fédérateur.</p>
+      <div class="tags-projet" aria-label="Technologies du projet">
+        <span class="tag-projet">Photoshop</span>
+        <span class="tag-projet">Illustrator</span>
+        <span class="tag-projet">Mockups 3D</span>
+        <span class="tag-projet">Print</span>
+        <span class="tag-projet">InDesign</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="probleme-solution">
+      <h2 id="probleme-solution">Problème &amp; solution</h2>
+      <div class="grid2">
+        <div>
+          <span class="label problem">Défi</span>
+          <p>Créer un habillage visuel cohérent qui représente simultanément Altametris et plusieurs filiales de SNCF Réseau, tout en conservant une identité visuelle commune et reconnaissable.</p>
+          <p>Contrainte print : les visuels devaient être validés avant impression et installation. Aucune correction possible sur le stand le jour J - les maquettes 3D étaient la seule façon de se projeter avant la production.</p>
+        </div>
+        <div>
+          <span class="label solution">Ce qui a été construit</span>
+          <p>Ensemble de visuels graphiques pour l'habillage complet du stand : panneaux, kakémonos, éléments de signalétique.</p>
+          <p>Mockups 3D haute fidélité permettant à l'équipe de visualiser le rendu final avant impression et installation. Intégration des logos des filiales SNCF Réseau avec cohérence chromatique. Présentation et validation par l'équipe communication avant production.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="demarche">
+      <h2 id="demarche">Démarche technique</h2>
+      <div class="process-row">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Analyse des besoins et contraintes</div>
+          <div class="step-desc">Collaboration avec l'équipe communication pour comprendre les objectifs du stand : quelles filiales mettre en avant, quelle hiérarchie d'information, quels messages clés. Étude des contraintes techniques print : formats des panneaux, résolution minimale pour l'impression grand format (300 dpi), zones de sécurité et de fond perdu. Collecte de tous les logos et assets des filiales SNCF Réseau.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Conception graphique et mockups 3D</div>
+          <div class="step-desc">Création des propositions graphiques sur Illustrator pour les éléments vectoriels et l'intégration des logos, puis Photoshop pour les compositions finales et les retouches visuelles. Réalisation des mockups 3D du stand avec habillage graphique appliqué : vue de face, vue de trois quarts, vue d'ensemble. Ces mockups permettaient à l'équipe de valider chaque élément avant d'envoyer en production.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Présentation, validation et production</div>
+          <div class="step-desc">Présentation des maquettes à l'équipe communication : revue de chaque visuel, ajustements selon les retours (repositionnement d'éléments, correction colorimétrique, ajout d'informations manquantes). Finalisation des fichiers print : export en PDF haute résolution avec fonds perdus et profil colorimétrique CMJN. Transmission aux imprimeurs pour production et installation au salon.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="livrables">
+      <h2 id="livrables">Livrables</h2>
+      <p>Trois familles de livrables produites pour couvrir l'ensemble de la chaîne, de la conception à l'impression.</p>
+
+      <div class="livrables-grid">
+        <div class="livrable-card">
+          <svg class="livrable-icone" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <line x1="9" y1="9" x2="9" y2="20"/>
+          </svg>
+          <h3 class="livrable-titre">Visuels graphiques</h3>
+          <p class="livrable-detail">Panneaux · Kakémonos · Signalétique</p>
+        </div>
+        <div class="livrable-card">
+          <svg class="livrable-icone" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/>
+            <path d="M4 7l8 4 8-4"/>
+            <line x1="12" y1="11" x2="12" y2="21"/>
+          </svg>
+          <h3 class="livrable-titre">Mockups 3D</h3>
+          <p class="livrable-detail">Vue de face · Vue 3/4 · Vue d'ensemble</p>
+        </div>
+        <div class="livrable-card">
+          <svg class="livrable-icone" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>
+            <path d="M14 3v4h4"/>
+            <line x1="8.5" y1="14" x2="15.5" y2="14"/>
+            <line x1="8.5" y1="17" x2="13" y2="17"/>
+          </svg>
+          <h3 class="livrable-titre">Fichiers print</h3>
+          <p class="livrable-detail">PDF CMJN · 300 dpi · Fonds perdus</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="results" aria-labelledby="resultats">
+    <div class="wrap">
+      <h2 id="resultats">Résultats</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-num">SIFER 2025</div><div class="result-label">salon ferroviaire majeur</div></div>
+        <div class="result-card"><div class="result-num">3D</div><div class="result-label">mockups de validation</div></div>
+        <div class="result-card"><div class="result-num">CMJN</div><div class="result-label">fichiers print professionnels</div></div>
+        <div class="result-card"><div class="result-num">Validé</div><div class="result-label">par l'équipe et les visiteurs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap demontre">
+    <section aria-labelledby="demontre-titre">
+      <h2 id="demontre-titre">Ce que ce projet démontre</h2>
+      <p>Ce projet démontre une compétence souvent sous-estimée en design : savoir travailler pour l'impression grand format, avec ses contraintes spécifiques (résolution, fonds perdus, profils colorimétriques CMJN) que le design web n'impose pas.</p>
+      <p>Il illustre aussi ma capacité à produire des mockups 3D convaincants pour la validation client - une étape cruciale quand les corrections sont impossibles après production.</p>
+      <p>Enfin, il témoigne de ma maîtrise de la contrainte de marque dans un contexte institutionnel fort : SNCF Réseau impose des règles graphiques strictes, et savoir créer dans ce cadre sans perdre en impact visuel est une vraie compétence.</p>
+    </section>
+  </div>
+</main>
+
+<!-- Navigation entre projets -->
+<div class="wrap">
+  <nav class="nav-projets" aria-label="Navigation entre projets">
+    <a href="altametris-motion.html" class="nav-projet-precedent">← Motion Design Altametris</a>
+    <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
+    <a href="cec-social.html" class="nav-projet-suivant">Communication CEC →</a>
+  </nav>
+</div>
+
+<footer class="wrap">
+  <a class="back-link" href="../index.html#projets">← Retour aux projets</a>
+</footer>
+
+<!-- projets.js s'auto-initialise (nav-pill au scroll, menu mobile) ;
+     les fonctions liées à la grille de projets et au formulaire se
+     désactivent automatiquement quand leurs éléments sont absents -->
+<script src="../projets.js"></script>
+
+</body>
+</html>
