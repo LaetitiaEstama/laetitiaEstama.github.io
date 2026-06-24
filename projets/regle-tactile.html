@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robot autonome WALL-E | Projet — Laëtitia Estama</title>
+<title>Règle tactile pédagogique | Projet — Laëtitia Estama</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
@@ -12,11 +12,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
 
-<meta name="description" content="Robot mobile autonome sur plateforme MegaPi Ultimate 2.0, conçu en équipe de cinq pour assister les personnes à mobilité réduite." />
+<meta name="description" content="Règle tactile pédagogique pour enfants malvoyants, modélisée de façon 100% paramétrique en SolidPython2/OpenSCAD pour impression 3D." />
 
 <!-- Open Graph / Twitter -->
-<meta property="og:title" content="Robot autonome WALL-E — Leyley" />
-<meta property="og:description" content="Robot mobile autonome sur plateforme MegaPi Ultimate 2.0, conçu en équipe de cinq pour assister les personnes à mobilité réduite." />
+<meta property="og:title" content="Règle tactile pédagogique — Leyley" />
+<meta property="og:description" content="Règle tactile pédagogique pour enfants malvoyants, modélisée de façon 100% paramétrique en SolidPython2/OpenSCAD pour impression 3D." />
 <meta property="og:image" content="../img/og-image.png" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="fr_FR" />
@@ -54,8 +54,8 @@
     --purple:#5B4B9A;
     --yellow:#ffc926;
     --rose:#C4005A;
-    --couleur-fond:#18542A;
-    --couleur-accent:#ffc926;
+    --couleur-fond:#0C447C;
+    --couleur-accent:#fff;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -136,7 +136,7 @@
 
   header.cover{
     background:var(--couleur-fond);
-    color:var(--cream);
+    color:#fff;
     padding:112px 0 48px;
   }
 
@@ -169,7 +169,7 @@
   }
   .lede{
     font-size:17px;
-    color:var(--cream);
+    color:#fff;
     opacity:.85;
     max-width:560px;
     margin-bottom:28px;
@@ -216,28 +216,19 @@
     padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
   }
 
-  /* Encadré (répartition technique) */
-  .encadre{
-    background:var(--cream);
-    border:2px solid var(--orange);
-    border-radius:12px;
-    padding:18px 20px;
-    margin-top:20px;
+  /* Bloc de code (apercu de la logique parametrique) */
+  .bloc-code{
+    background:#0a2a4a;
+    color:var(--yellow);
+    font-family:'Courier New', Courier, monospace;
     font-size:14px;
+    padding:24px;
+    border-radius:12px;
+    overflow-x:auto;
+    margin:24px 0;
+    line-height:1.6;
   }
-  .encadre b{color:var(--orange);}
-
-  /* Timeline des séances */
-  .timeline{display:flex; flex-direction:column;}
-  .timeline-etape{display:flex; gap:18px; padding-bottom:26px;}
-  .timeline-etape:last-child{padding-bottom:0;}
-  .timeline-point-col{display:flex; flex-direction:column; align-items:center; flex-shrink:0;}
-  .timeline-point{width:14px; height:14px; border-radius:50%; background:var(--couleur-fond); flex-shrink:0;}
-  .timeline-ligne{flex:1; width:2px; background:rgba(24,84,42,0.25); margin-top:4px;}
-  .timeline-etape:last-child .timeline-ligne{display:none;}
-  .timeline-contenu{flex:1; padding-top:1px;}
-  .timeline-titre{font-size:14px; font-weight:700; margin-bottom:4px;}
-  .timeline-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
+  .bloc-code code{font-family:inherit; white-space:pre;}
 
   .stack-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
   .stack-card{
@@ -264,10 +255,10 @@
   .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
 
   .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
-  .results h2{color:var(--couleur-accent); border-bottom-color:var(--couleur-accent);}
+  .results h2{color:var(--yellow); border-bottom-color:var(--yellow);}
   .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
   .result-card{text-align:center;}
-  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; color:var(--couleur-accent);}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; color:var(--yellow);}
   .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
 
   .demontre{padding-top:48px;}
@@ -343,15 +334,15 @@
         <li aria-hidden="true">→</li>
         <li><a href="../index.html#projets">Projets</a></li>
         <li aria-hidden="true">→</li>
-        <li aria-current="page">Robot autonome WALL-E</li>
+        <li aria-current="page">Règle tactile pédagogique</li>
       </ol>
     </nav>
-    <span class="eyebrow">Projet · Ingénierie &amp; Systèmes</span>
-    <h1>Robot autonome WALL-E</h1>
-    <p class="lede">M1 MIASHS · Électronique · Projet de groupe</p>
+    <span class="eyebrow">Ingénierie &amp; Systèmes · Accessibilité</span>
+    <h1>Règle tactile pédagogique</h1>
+    <p class="lede">Modélisation paramétrique · Impression 3D · Solo</p>
     <div class="meta-row">
-      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Documentation &amp; rapport</span></div>
-      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2026</span></div>
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Conception complète</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2024</span></div>
       <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Terminé</span></div>
     </div>
   </div>
@@ -362,23 +353,14 @@
 
     <section aria-labelledby="contexte">
       <h2 id="contexte">Contexte</h2>
-      <p>Dans le cadre du Master MIASHS, notre équipe de cinq étudiants a conçu un robot mobile autonome sur la plateforme Makeblock MegaPi Ultimate 2.0. L'objectif applicatif : pallier les limitations motrices d'usagers en récupérant un objet et en le ramenant au point de départ — sans intervention humaine.</p>
-      <p>Le projet a débuté avec une ambition de tri sélectif automatisé, avant d'évoluer vers une mission de service d'assistance, plus réaliste face aux contraintes matérielles découvertes en cours de route.</p>
+      <p>Concevoir un outil pédagogique tangible pour les enfants malvoyants : une règle dont chaque graduation, chaque repère est perceptible au toucher. Le défi n'est pas graphique mais physique — dimensions, épaisseurs, espacement des reliefs doivent être pensés pour les doigts, pas pour les yeux.</p>
+      <p>L'approche paramétrique permet à n'importe quel enseignant ou orthoptiste de modifier les dimensions selon les besoins spécifiques d'un enfant, sans toucher au code de modélisation.</p>
       <div class="tags-projet" aria-label="Technologies du projet">
-        <span class="tag-projet">MegaPi</span>
-        <span class="tag-projet">C++ Arduino</span>
-        <span class="tag-projet">Python</span>
-        <span class="tag-projet">Robotique</span>
-        <span class="tag-projet">Mécatronique</span>
-      </div>
-    </section>
-
-    <section aria-labelledby="role">
-      <h2 id="role">Mon rôle dans le projet</h2>
-      <p>Dans cette équipe de cinq personnes, j'ai assuré la fonction de mémoire collective du projet : tenue du journal de bord des erreurs et des décisions techniques, documentation des anomalies en temps réel à chaque séance, et rédaction du rapport final avec Younes.</p>
-      <p>J'ai également participé au montage et démontage répétés du châssis, nécessaires aux nombreuses reconfigurations imposées par les contraintes physiques découvertes en cours de développement.</p>
-      <div class="encadre">
-        <b>Répartition technique :</b> le codage Python a été mené par Imed et Melissa, la migration C++ embarqué par Imed et Younes, le maquettage de l'application RoboPilot par Melissa et Narimane.
+        <span class="tag-projet">SolidPython2</span>
+        <span class="tag-projet">OpenSCAD</span>
+        <span class="tag-projet">Impression 3D</span>
+        <span class="tag-projet">Accessibilité</span>
+        <span class="tag-projet">CAO</span>
       </div>
     </section>
 
@@ -387,11 +369,11 @@
       <div class="grid2">
         <div>
           <span class="label problem">Problème</span>
-          <p>La plateforme MegaPi Ultimate 2.0 n'est pas documentée officiellement pour la configuration Robotic Arm Tank. Chaque port, chaque composant, chaque timing a dû être découvert empiriquement — session après session.</p>
+          <p>Les règles standard sont conçues pour la vision. Les graduations sont imprimées, pas en relief. Les chiffres sont visuels. Pour un enfant malvoyant, ces outils sont inutilisables sans adaptation spécifique et coûteuse.</p>
         </div>
         <div>
-          <span class="label solution">Ce que l'équipe a construit</span>
-          <p>Architecture hybride : prototypage rapide en Python (mode esclave) pour calibrer capteurs et déplacements, puis migration vers C++ embarqué pour une autonomie complète sans connexion PC. Algorithme de backtracking LIFO pour le retour HOME : chaque micro-mouvement est consigné, puis exécuté en inverse.</p>
+          <span class="label solution">Solution</span>
+          <p>Modélisation 100% paramétrique en SolidPython2 générant du code OpenSCAD. Chaque dimension est une variable : longueur totale, espacement des graduations, hauteur des reliefs, taille des chiffres en relief. Une ligne de code suffit à adapter la règle à un nouveau besoin. Export STL direct pour impression 3D.</p>
         </div>
       </div>
     </section>
@@ -399,47 +381,18 @@
   </div>
 
   <div class="wrap">
-    <section aria-labelledby="deroulement">
-      <h2 id="deroulement">Déroulement du projet</h2>
-      <p>Le projet s'est déroulé sur cinq séances de travail en salle. Pas de schéma d'architecture interactif ici : la chronologie ci-dessous reprend le diagramme de Gantt du rapport.</p>
+    <section aria-labelledby="code">
+      <h2 id="code">Aperçu de la logique paramétrique</h2>
+      <p>Pas de schéma interactif pour ce projet : la modélisation se lit directement dans le code. Voici une version simplifiée de la logique paramétrique utilisée.</p>
 
-      <div class="timeline" role="list" aria-label="Chronologie des 5 séances de travail">
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séance 1</div>
-            <div class="timeline-desc">Cadrage, choix de la configuration, montage initial et repérage empirique des ports.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 2-3</div>
-            <div class="timeline-desc">Développement du prototype Python et calibration des capteurs et déplacements.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 3-4</div>
-            <div class="timeline-desc">Migration et portage du code en C++ Arduino, recalibration totale des paramètres temporels.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 4-5</div>
-            <div class="timeline-desc">Tests intégrés en mode autonome, recalibration finale, finalisation et préparation de la soutenance.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Entre les séances</div>
-            <div class="timeline-desc">Maquette de l'application RoboPilot (Melissa, Narimane) et rédaction du rapport (Younes, Laëtitia), en parallèle des séances en salle.</div>
-          </div>
-        </div>
-      </div>
+      <pre class="bloc-code"><code># Exemple simplifié — paramètres modifiables
+LONGUEUR     = 200  # mm
+NB_GRADUATIONS = 20
+HAUTEUR_RELIEF = 0.8  # mm perceptible au toucher
+
+def graduation(position, hauteur):
+    return cube([2, hauteur * 3, HAUTEUR_RELIEF])
+           .translate([position, 0, 0])</code></pre>
     </section>
   </div>
 
@@ -450,18 +403,18 @@
       <div class="process-row">
         <div class="step">
           <div class="step-num">01</div>
-          <div class="step-title">Prototypage Python</div>
-          <div class="step-desc">Phase de découverte empirique : cartographie des ports MegaPi un par un, calibration des moteurs à encodeurs, identification du capteur ultrasonique sur la carte d'extension RJ25 (port 8). Chaque bug résolu a établi une règle pour la suite.</div>
+          <div class="step-title">Analyse des besoins</div>
+          <div class="step-desc">Étude des contraintes tactiles : quelle hauteur de relief est perceptible du bout des doigts ? Quel espacement entre graduations évite la confusion ? Recherche sur les standards d'accessibilité physique (hauteur relief minimum 0.5mm, largeur graduation recommandée).</div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <div class="step-title">Migration C++ embarqué</div>
-          <div class="step-desc">Réécriture complète du code pour l'ATmega2560. Le même algorithme produit des comportements physiques totalement différents selon l'environnement. Chaque paramètre temporel (durée pivot, distance saisie, délai ultrasonique) a été réévalué indépendamment par expérimentation physique.</div>
+          <div class="step-title">Modélisation paramétrique</div>
+          <div class="step-desc">Écriture du modèle en SolidPython2 : chaque élément (corps de règle, graduation courte, graduation longue, chiffre en relief) est une fonction Python qui prend des paramètres. OpenSCAD génère le solide 3D à partir du code. Itérations rapides : modifier un paramètre = régénérer instantanément.</div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
-          <div class="step-title">Tests en conditions réelles</div>
-          <div class="step-desc">10 tentatives standardisées : même sol, mêmes piles fraîches, même objet cible (&lt; 100g). Validation séquentielle des sous-systèmes avant la boucle complète : trajet aller → scan → approche → saisie → retour HOME.</div>
+          <div class="step-title">Impression et validation</div>
+          <div class="step-desc">Export en STL, impression sur imprimante FDM. Vérification tactile des reliefs : hauteur suffisante, arêtes non coupantes, stabilité de la pièce. Ajustements des paramètres selon le retour physique.</div>
         </div>
       </div>
     </section>
@@ -472,10 +425,10 @@
     <div class="wrap">
       <h2 id="resultats">Résultats</h2>
       <div class="results-grid">
-        <div class="result-card"><div class="result-num">90%</div><div class="result-label">taux de succès (10 tentatives)</div></div>
-        <div class="result-card"><div class="result-num">&lt; 25s</div><div class="result-label">trajet aller sur 6 mètres</div></div>
-        <div class="result-card"><div class="result-num">&lt; 10cm</div><div class="result-label">marge de précision retour HOME</div></div>
-        <div class="result-card"><div class="result-num">45min</div><div class="result-label">autonomie par session (6 piles AA)</div></div>
+        <div class="result-card"><div class="result-num">100%</div><div class="result-label">paramétrique (tout modifiable)</div></div>
+        <div class="result-card"><div class="result-num">0.5mm+</div><div class="result-label">hauteur relief minimum</div></div>
+        <div class="result-card"><div class="result-num">1 ligne</div><div class="result-label">pour adapter à un nouveau besoin</div></div>
+        <div class="result-card"><div class="result-num">Open</div><div class="result-label">fichiers librement réutilisables</div></div>
       </div>
     </div>
   </section>
@@ -483,8 +436,8 @@
   <div class="wrap demontre">
     <section aria-labelledby="demontre-titre">
       <h2 id="demontre-titre">Ce que ce projet démontre</h2>
-      <p>Ce projet illustre ma capacité à documenter rigoureusement un processus technique complexe, à tracer les erreurs et les décisions en temps réel, et à synthétiser un travail collectif dense dans un rapport académique structuré.</p>
-      <p>Il démontre aussi ma compréhension des systèmes embarqués : la différence entre un modèle asynchrone (Python) et synchrone (C++), les contraintes énergétiques d'un microcontrôleur, et la rigueur que requiert tout projet où le logiciel doit dialoguer avec du matériel physique.</p>
+      <p>Ce projet prouve que l'accessibilité ne se limite pas au numérique. Appliquer une logique de conception inclusive à un objet physique — penser pour les doigts plutôt que pour les yeux — demande la même rigueur méthodologique qu'un audit WCAG.</p>
+      <p>Il démontre aussi ma maîtrise de la modélisation paramétrique (SolidPython2/OpenSCAD) et ma capacité à traduire un besoin utilisateur concret en contraintes techniques précises.</p>
     </section>
   </div>
 </main>
@@ -492,9 +445,9 @@
 <!-- Navigation entre projets -->
 <div class="wrap">
   <nav class="nav-projets" aria-label="Navigation entre projets">
-    <a href="regie-cec.html" class="nav-projet-precedent">← Système de régie live CEC</a>
+    <a href="wall-e.html" class="nav-projet-precedent">← Robot autonome WALL-E</a>
     <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
-    <a href="regle-tactile.html" class="nav-projet-suivant">Règle tactile pédagogique →</a>
+    <a href="detection-voiture.html" class="nav-projet-suivant">Détection couleur K-means →</a>
   </nav>
 </div>
 

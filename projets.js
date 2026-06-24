@@ -287,12 +287,20 @@ function gererFormulaireContact() {
 
 // --- Animation d'intro ---
 function gererIntro() {
+  var dejaVue = sessionStorage.getItem("intro-vue");
   var reduitMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var delai = reduitMotion ? 0 : 2500;
 
+  if (dejaVue || reduitMotion) {
+    // Intro déjà jouée ou mouvement réduit : on saute directement
+    document.body.classList.remove("intro-active");
+    return;
+  }
+
+  // Première visite : joue l'animation puis mémorise
   window.setTimeout(function () {
     document.body.classList.remove("intro-active");
-  }, delai);
+    sessionStorage.setItem("intro-vue", "1");
+  }, 2500);
 }
 
 // --- Pill de navigation : légère réduction + ombre renforcée au scroll ---

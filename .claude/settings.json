@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nohup python3 -m http.server 8160)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8160/projets/regie-cec.html)",
+      "Bash(node verify14.js)",
+      "Bash(nohup python3 -m http.server 8170)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8170/projets/regie-cec.html)",
+      "Bash(node verify16.js)",
+      "Bash(node verify17.js)",
+      "Bash(nohup python3 -m http.server 8180)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8180/projets/regie-cec.html)",
+      "Bash(node verify20.js)",
+      "Bash(python3 -)",
+      "Bash(nohup python3 -m http.server 8190)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8190/index.html)",
+      "Bash(node verify22.js)",
+      "Bash(nohup python3 -m http.server 8200)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8200/index.html)",
+      "Bash(node verify24.js)",
+      "Bash(nohup python3 -m http.server 8210)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8210/projets/wall-e.html)",
+      "Bash(node verify25.js)",
+      "Bash(nohup python3 -m http.server 8220)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8220/projets/regle-tactile.html)",
+      "Bash(node verify27.js)",
+      "Bash(nohup python3 -m http.server 8230)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8230/index.html)",
+      "Bash(node audit.js)"
+    ]
+  }
+}
