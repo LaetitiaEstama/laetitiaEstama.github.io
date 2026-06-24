@@ -459,7 +459,8 @@ body:not(.intro-active) .entete {
 }
 
 .hero-titre span:last-child {
-  color: var(--orange);
+  /* Accessibilité : #C44A08 utilisé comme texte ne passe pas 4.5:1 sur fond crème */
+  color: #7A2E00;
 }
 
 .hero-sous-titre {
