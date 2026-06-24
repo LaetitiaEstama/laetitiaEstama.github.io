@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goutropic - Blog culinaire haïtien | Projet - Laëtitia Estama</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/logo_jaune_mono-favicon-16x16.png" />
+<link rel="icon" type="image/x-icon" href="../img/favicon/logo_jaune_mono-favicon.ico" />
+<link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+<meta name="description" content="Goutropic, blog culinaire valorisant la cuisine haïtiano-caribéenne : direction artistique complète, maquettes Adobe XD, intégration HTML5/CSS3, tests utilisateurs en présentiel." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Goutropic - Leyley" />
+<meta property="og:description" content="Blog culinaire valorisant la cuisine haïtiano-caribéenne. Direction artistique complète, wireframes, maquettes Adobe XD, intégration HTML5/CSS3 sémantique, rédaction articles, tests utilisateurs en présentiel. Hébergé sur GitHub Pages." />
+<meta property="og:image" content="../img/og-image.png" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../img/og-image.png" />
+
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Black.ttf') format('truetype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+
+  :root{
+    --cream:#F5F0E8;
+    --ink:#1A1A1A;
+    --orange:#C44A08;
+    --green:#18542A;
+    --blue:#0C447C;
+    --purple:#5B4B9A;
+    --yellow:#ffc926;
+    --rose:#C4005A;
+    --couleur-fond:#C44A08;
+    --couleur-accent:#fff;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--orange);}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--orange); outline-offset:2px;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* Lien d'évitement */
+  .lien-evitement{
+    position:absolute; left:1rem; top:-100px;
+    background:var(--ink); color:var(--cream);
+    padding:0.75rem 1.25rem; border-radius:0.5rem;
+    font-weight:600; text-decoration:none;
+    z-index:3000; transition:top .2s ease;
+  }
+  .lien-evitement:focus-visible{top:1rem;}
+
+  /* Navigation pill flottante (identique à index.html) */
+  .nav-pill{
+    position:fixed; top:20px; left:50%; z-index:2000;
+    display:flex; align-items:center; gap:1.25rem;
+    width:calc(100% - 2rem); max-width:700px; margin:0 auto;
+    background:var(--ink); border-radius:999px;
+    padding:0.5rem 0.75rem 0.5rem 0.5rem;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    transform:translateX(-50%);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .nav-pill--reduite{
+    transform:translateX(-50%) scale(0.97);
+    box-shadow:0 12px 40px rgba(0,0,0,0.32);
+  }
+  .nav-logo{flex-shrink:0; height:32px; width:54.75px; overflow:hidden; display:flex;}
+  .nav-logo img{
+    height:62.5px; width:62.5px; max-width:none;
+    margin-left:-4.5px; margin-top:-13.81px;
+  }
+  .nav-liens{display:flex; align-items:center; justify-content:center; gap:1.25rem; flex:1; list-style:none;}
+  .nav-lien{font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:14px; color:#fff; opacity:.7; transition:opacity .2s ease; text-decoration:none;}
+  .nav-lien:hover{opacity:1;}
+  .nav-cta{
+    background:var(--yellow); color:var(--ink);
+    font-family:'Outfit',sans-serif; font-weight:700; font-size:14px;
+    padding:8px 20px; border-radius:999px; white-space:nowrap; flex-shrink:0;
+    transition:background-color .2s ease, color .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .nav-cta:hover{background:var(--orange); color:#fff;}
+  .nav-burger{
+    display:none; flex-direction:column; justify-content:space-between;
+    gap:4px; width:22px; height:16px; flex-shrink:0;
+    background:none; border:none; cursor:pointer; padding:0;
+  }
+  .nav-burger span{display:block; width:100%; height:2px; background:#fff;}
+  .nav-menu-mobile{
+    position:fixed; inset:0; z-index:1900; background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    transform:translateY(-100%); transition:transform .3s ease;
+  }
+  .nav-menu-mobile--ouvert{transform:translateY(0);}
+  .nav-menu-mobile ul{display:flex; flex-direction:column; align-items:center; gap:2rem; list-style:none;}
+  .nav-menu-mobile a{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.5rem; color:var(--cream); text-decoration:none;}
+
+  @media (max-width:640px){
+    .nav-liens{display:none;}
+    .nav-burger{display:flex;}
+    .nav-pill{gap:.75rem;}
+    .nav-cta{padding:8px 14px; font-size:13px;}
+  }
+
+  header.cover{
+    background:var(--couleur-fond);
+    color:#fff;
+    padding:112px 0 48px;
+  }
+
+  /* Fil d'Ariane */
+  .fil-ariane{
+    list-style:none; display:flex; gap:8px; flex-wrap:wrap;
+    font-size:12px; color:#fff;
+    margin-bottom:20px;
+  }
+  .fil-ariane a{color:#fff; font-weight:500; text-decoration:none;}
+  .fil-ariane a:hover{text-decoration:underline;}
+
+  .eyebrow{
+    display:inline-block;
+    background-color:#1A1A1A;
+    color:var(--couleur-accent);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Outfit',sans-serif;
+    font-weight:900;
+    font-size:clamp(30px,5vw,50px);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .lede{
+    font-size:17px;
+    color:#fff;
+    max-width:560px;
+    margin-bottom:28px;
+  }
+  .meta-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .meta-chip{
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:500;
+  }
+  .meta-chip b{font-weight:600; color:#fff;}
+  .meta-chip span.sep{color:#F6D8C2; margin:0 2px;}
+  .meta-chip .rest{color:#FBE9DC;}
+
+  .bouton-voir-site{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:22px;
+    background:#fff;
+    color:var(--couleur-fond);
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    padding:10px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:background-color .2s ease, color .2s ease;
+  }
+  .bouton-voir-site:hover{background:var(--ink); color:#fff;}
+
+  main{padding-top:48px;}
+  section{margin-bottom:48px;}
+  h2{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--couleur-fond);
+    border-bottom:2px solid var(--couleur-fond);
+    padding-bottom:8px;
+    margin-bottom:20px;
+    display:inline-block;
+  }
+  p{font-size:15px; max-width:680px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .label{
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:8px; display:block;
+  }
+  .label.problem{color:var(--couleur-fond);}
+  .label.solution{color:var(--green);}
+
+  /* Tags projet */
+  .tags-projet{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .tag-projet{
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:999px;
+    padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
+  }
+
+  .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
+  .step-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--couleur-fond); color:#fff;
+    font-family:'Outfit',sans-serif; font-weight:900; font-size:18px;
+    padding:4px 12px; border-radius:8px; margin-bottom:10px;
+  }
+  .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
+  .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
+
+  .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
+  .results h2{color:#fff; border-bottom-color:#fff;}
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .result-card{text-align:center;}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:22px; color:#fff;}
+  .result-label{font-size:12px; color:#FBE9DC; margin-top:4px;}
+
+  .demontre{padding-top:48px;}
+
+  .wrap.wide{max-width:1140px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* Navigation entre projets */
+  .nav-projets{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:32px 0; border-top:1px solid rgba(0,0,0,0.08);
+    font-size:14px; font-weight:600;
+  }
+  .nav-projets a{color:#7A2E00; text-decoration:none;}
+  .nav-projets a:hover{text-decoration:underline;}
+
+  footer{padding:40px 0 60px;}
+  .back-link{color:#7A2E00; font-size:14px; font-weight:600; text-decoration:none;}
+  .back-link:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    .grid2, .stack-grid, .process-row{grid-template-columns:1fr;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+<!-- Navigation pill flottante -->
+<nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Leyley - retour à l'accueil">
+    <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
+  </a>
+
+  <ul class="nav-liens">
+    <li><a href="../index.html#projets" class="nav-lien">Projets</a></li>
+    <li><a href="../index.html#apropos" class="nav-lien">À propos</a></li>
+    <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+    <li><a href="#" class="nav-lien">Expériences</a></li>
+  </ul>
+
+  <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+
+  <button
+    type="button"
+    class="nav-burger"
+    id="nav-burger"
+    aria-expanded="false"
+    aria-controls="nav-menu-mobile"
+    aria-label="Ouvrir le menu"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Menu mobile en overlay -->
+<div class="nav-menu-mobile" id="nav-menu-mobile">
+  <ul>
+    <li><a href="../index.html#projets">Projets</a></li>
+    <li><a href="../index.html#apropos">À propos</a></li>
+    <li><a href="#">Expériences</a></li>
+  </ul>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="fil-ariane">
+        <li><a href="../index.html">Accueil</a></li>
+        <li aria-hidden="true">→</li>
+        <li><a href="../index.html#projets">Projets</a></li>
+        <li aria-hidden="true">→</li>
+        <li aria-current="page">Goutropic</li>
+      </ol>
+    </nav>
+    <span class="eyebrow">Développement web · UX/UI · Direction artistique</span>
+    <h1>Goutropic - Blog culinaire haïtien</h1>
+    <p class="lede">Échange universitaire · Cégep de Jonquière · Québec · Solo · 2023</p>
+    <div class="meta-row">
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">UX/UI · DA · Développement front-end</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2023</span></div>
+      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">En ligne</span></div>
+    </div>
+    <a class="bouton-voir-site" href="https://laetitiaestama.github.io/goutropic.github.io/index.html" target="_blank" rel="noopener noreferrer">Voir le site ↗</a>
+  </div>
+</header>
+
+<main id="contenu-principal" tabindex="-1">
+  <div class="wrap">
+
+    <section aria-labelledby="contexte">
+      <h2 id="contexte">Contexte</h2>
+      <p>Goutropic est un blog culinaire que j'ai imaginé et développé lors de mon échange universitaire au Québec, dans le cadre du cours Ergonomie du Web au Cégep de Jonquière. Ce projet de fin de session (35% de la note finale) avait pour objectif de concevoir une plateforme à la fois fonctionnelle et émotionnelle autour d'un sujet libre.</p>
+      <p>J'ai choisi de mettre à l'honneur la richesse de la cuisine haïtienne et caribéenne - souvent réduite à des stéréotypes - en créant une expérience immersive qui donne envie de voyager depuis sa cuisine.</p>
+      <div class="tags-projet" aria-label="Technologies du projet">
+        <span class="tag-projet">HTML/CSS</span>
+        <span class="tag-projet">UX/UI</span>
+        <span class="tag-projet">Adobe XD</span>
+        <span class="tag-projet">Direction artistique</span>
+        <span class="tag-projet">GitHub Pages</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="probleme-solution">
+      <h2 id="probleme-solution">Problème &amp; solution</h2>
+      <div class="grid2">
+        <div>
+          <span class="label problem">Problème UX/UI</span>
+          <p>Comment créer un blog culinaire qui allie esthétique et lisibilité, tout en favorisant l'immersion dans un univers tropical ?</p>
+          <p>La cuisine haïtienne est peu représentée en ligne et souvent associée à des visuels austères ou folkloriques. L'enjeu était de lui donner une identité visuelle moderne, chaleureuse et désirable, sans tomber dans la caricature.</p>
+        </div>
+        <div>
+          <span class="label solution">Ce qui a été construit</span>
+          <p>Direction artistique complète : logo GouTropic, palette caribéenne (oranges chauds, verts tropicaux, crème), typographies évocatrices du voyage.</p>
+          <p>Wireframes et maquettes Adobe XD, intégration HTML5/CSS3 sémantique, rédaction de plusieurs articles originaux, tests utilisateurs en présentiel à main levée, puis corrections basées sur les retours. Hébergé sur GitHub Pages.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="demarche">
+      <h2 id="demarche">Démarche technique</h2>
+      <div class="process-row">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Recherche et direction artistique</div>
+          <div class="step-desc">Benchmark des blogs culinaires existants pour identifier ce qui manquait pour la cuisine caribéenne. Définition d'un persona et du public cible. Création du moodboard, du logo GouTropic, de la palette de couleurs et des typographies. Objectif : évoquer le voyage, la chaleur et la gourmandise sans stéréotyper.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Wireframes et maquettes Adobe XD</div>
+          <div class="step-desc">Architecture de l'information : page d'accueil, liste d'articles, page recette, page À propos. Wireframes basse fidélité à la main pour valider les parcours, puis maquettes haute fidélité sur Adobe XD avec la direction artistique complète. Attention particulière à la lisibilité mobile dès la conception.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Intégration et tests utilisateurs</div>
+          <div class="step-desc">Développement HTML5/CSS3 sémantique avec balisage rigoureux pour le SEO (titres parlants, call-to-actions, structuration logique). Rédaction de plusieurs articles originaux sur la cuisine haïtienne et caribéenne. Tests utilisateurs en présentiel : sessions à main levée, guide de test structuré, recommandations et corrections des parcours.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="results" aria-labelledby="resultats">
+    <div class="wrap">
+      <h2 id="resultats">Résultats</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-num">Solo</div><div class="result-label">projet individuel complet</div></div>
+        <div class="result-card"><div class="result-num">Adobe XD</div><div class="result-label">maquettes haute fidélité</div></div>
+        <div class="result-card"><div class="result-num">GitHub Pages</div><div class="result-label">site en ligne</div></div>
+        <div class="result-card"><div class="result-num">35%</div><div class="result-label">du poids dans la note finale</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap demontre">
+    <section aria-labelledby="demontre-titre">
+      <h2 id="demontre-titre">Ce que ce projet démontre</h2>
+      <p>Goutropic est mon premier projet solo où j'ai tout fait de A à Z : recherche utilisateur, direction artistique, maquettes, développement, rédaction de contenu, tests et mise en ligne.</p>
+      <p>Il prouve ma capacité à mener un projet créatif avec une vraie rigueur méthodologique, à défendre une vision culturelle forte à travers le design, et à livrer un produit abouti dans les contraintes d'un cours universitaire à l'étranger - seule, dans un contexte nouveau, avec des outils appris sur le tas.</p>
+    </section>
+  </div>
+</main>
+
+<!-- Navigation entre projets -->
+<div class="wrap">
+  <nav class="nav-projets" aria-label="Navigation entre projets">
+    <a href="exces-site.html" class="nav-projet-precedent">← Site e-commerce Excès</a>
+    <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
+    <a href="modernisation-cec.html" class="nav-projet-suivant">Refonte UX site CEC →</a>
+  </nav>
+</div>
+
+<footer class="wrap">
+  <a class="back-link" href="../index.html#projets">← Retour aux projets</a>
+</footer>
+
+<!-- projets.js s'auto-initialise (nav-pill au scroll, menu mobile) ;
+     les fonctions liées à la grille de projets et au formulaire se
+     désactivent automatiquement quand leurs éléments sont absents -->
+<script src="../projets.js"></script>
+
+</body>
+</html>
