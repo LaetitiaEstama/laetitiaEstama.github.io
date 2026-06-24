@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Règle tactile pédagogique | Projet — Laëtitia Estama</title>
+<title>Site web associatif — Centre Évangélique Chrétien | Projet — Laëtitia Estama</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
@@ -12,11 +12,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
 
-<meta name="description" content="Règle tactile pédagogique pour enfants malvoyants, modélisée de façon 100% paramétrique en SolidPython2/OpenSCAD pour impression 3D." />
+<meta name="description" content="Site web associatif complet pour le Centre Évangélique Chrétien : 10 pages PHP/MySQL, panel d'administration, conformité WCAG 2.1 AA à 100%, score WAVE moyen 9.3/10." />
 
 <!-- Open Graph / Twitter -->
-<meta property="og:title" content="Règle tactile pédagogique — Leyley" />
-<meta property="og:description" content="Règle tactile pédagogique pour enfants malvoyants, modélisée de façon 100% paramétrique en SolidPython2/OpenSCAD pour impression 3D." />
+<meta property="og:title" content="Site web associatif CEC — Leyley" />
+<meta property="og:description" content="10 pages PHP/MySQL : accueil avec vidéo hero contrôlable, événements, sermons, ressources. Panel d'administration complet. WCAG 2.1 AA à 100%, plusieurs critères AAA. Score WAVE moyen : 9.3/10. Zéro erreur de contraste." />
 <meta property="og:image" content="../img/og-image.png" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="fr_FR" />
@@ -54,8 +54,8 @@
     --purple:#5B4B9A;
     --yellow:#ffc926;
     --rose:#C4005A;
-    --couleur-fond:#0C447C;
-    --couleur-accent:#fff;
+    --couleur-fond:#18542A;
+    --couleur-accent:#ffc926;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -170,7 +170,6 @@
   .lede{
     font-size:17px;
     color:#fff;
-    opacity:.85;
     max-width:560px;
     margin-bottom:28px;
   }
@@ -180,12 +179,28 @@
     border-radius:8px;
     padding:8px 14px;
     font-size:13px;
-    /* Accessibilité : poids minimum 500 pour la lisibilité du texte des chips */
     font-weight:500;
   }
   .meta-chip b{font-weight:600; color:#fff;}
-  .meta-chip span.sep{color:#A9A49A; margin:0 2px;}
-  .meta-chip .rest{color:#C9C5BB;}
+  .meta-chip span.sep{color:#BFD6C5; margin:0 2px;}
+  .meta-chip .rest{color:#E2EFE5;}
+
+  .bouton-voir-site{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:22px;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    padding:10px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:background-color .2s ease;
+  }
+  .bouton-voir-site:hover{background:#fff;}
 
   main{padding-top:48px;}
   section{margin-bottom:48px;}
@@ -218,33 +233,6 @@
     padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
   }
 
-  /* Bloc de code (apercu de la logique parametrique) */
-  .bloc-code{
-    background:#0a2a4a;
-    color:var(--yellow);
-    font-family:'Courier New', Courier, monospace;
-    font-size:14px;
-    padding:24px;
-    border-radius:12px;
-    overflow-x:auto;
-    margin:24px 0;
-    line-height:1.6;
-  }
-  .bloc-code code{font-family:inherit; white-space:pre;}
-
-  .stack-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
-  .stack-card{
-    background:#fff;
-    border:1px solid rgba(0,0,0,0.08);
-    border-radius:12px;
-    padding:16px;
-  }
-  .stack-cat{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;}
-  .stack-cat.captation{color:var(--blue);}
-  .stack-cat.controle{color:#7A2E00;}
-  .stack-cat.diffusion{color:var(--purple);}
-  .stack-items{font-size:13px; line-height:1.8; color:#3a3a3a; list-style:none;}
-
   .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
   .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
   .step-num{
@@ -256,12 +244,78 @@
   .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
   .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
 
+  /* Tableau audit WAVE */
+  .tableau-wave-conteneur{
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.08);
+    margin-top:8px;
+  }
+  .tableau-wave{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+  }
+  .tableau-wave caption{
+    caption-side:top;
+    text-align:left;
+    font-size:14px;
+    font-weight:600;
+    color:var(--couleur-fond);
+    padding:14px 16px 10px;
+    background:#fff;
+  }
+  .tableau-wave th{
+    background:var(--couleur-fond);
+    color:#fff;
+    text-align:left;
+    padding:12px 16px;
+    font-weight:600;
+    font-size:14px;
+  }
+  .tableau-wave td{
+    padding:12px 16px;
+    font-size:14px;
+  }
+  .tableau-wave tbody tr:nth-child(odd){background:#fff;}
+  .tableau-wave tbody tr:nth-child(even){background:var(--cream);}
+  .tableau-wave .score{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    color:var(--green);
+  }
+
   .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
   .results h2{color:var(--yellow); border-bottom-color:var(--yellow);}
   .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
   .result-card{text-align:center;}
   .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; color:var(--yellow);}
-  .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
+  .result-label{font-size:12px; color:#E2EFE5; margin-top:4px;}
+
+  /* Liste de conformité */
+  .liste-conformite{
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:8px;
+  }
+  .conformite-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:12px;
+    padding:14px 18px;
+    font-size:14px;
+    line-height:1.5;
+  }
+  .conformite-icone{
+    color:var(--green);
+    font-weight:700;
+    flex-shrink:0;
+  }
 
   .demontre{padding-top:48px;}
 
@@ -284,7 +338,9 @@
   @media (max-width:640px){
     .grid2, .stack-grid, .process-row{grid-template-columns:1fr;}
     .results-grid{grid-template-columns:1fr 1fr;}
+    .liste-conformite{grid-template-columns:1fr;}
     .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+    .tableau-wave-conteneur{overflow-x:auto;}
   }
 </style>
 </head>
@@ -336,17 +392,18 @@
         <li aria-hidden="true">→</li>
         <li><a href="../index.html#projets">Projets</a></li>
         <li aria-hidden="true">→</li>
-        <li aria-current="page">Règle tactile pédagogique</li>
+        <li aria-current="page">Site web associatif CEC</li>
       </ol>
     </nav>
-    <span class="eyebrow">Ingénierie &amp; Systèmes · Accessibilité</span>
-    <h1>Règle tactile pédagogique</h1>
-    <p class="lede">Modélisation paramétrique · Impression 3D · Solo</p>
+    <span class="eyebrow">Développement web · Accessibilité</span>
+    <h1>Site web associatif — Centre Évangélique Chrétien</h1>
+    <p class="lede">M1 MIASHS · Paris 8 · Projet solo · Juin 2026</p>
     <div class="meta-row">
-      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Conception complète</span></div>
-      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2024</span></div>
-      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Terminé</span></div>
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Développement full-stack solo</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2024–2026</span></div>
+      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">En ligne</span></div>
     </div>
+    <a class="bouton-voir-site" href="https://handiman.univ-paris8.fr/~laetitia/association_cec/" target="_blank" rel="noopener noreferrer">Voir le site ↗</a>
   </div>
 </header>
 
@@ -355,14 +412,15 @@
 
     <section aria-labelledby="contexte">
       <h2 id="contexte">Contexte</h2>
-      <p>Concevoir un outil pédagogique tangible pour les enfants malvoyants : une règle dont chaque graduation, chaque repère est perceptible au toucher. Le défi n'est pas graphique mais physique — dimensions, épaisseurs, espacement des reliefs doivent être pensés pour les doigts, pas pour les yeux.</p>
-      <p>L'approche paramétrique permet à n'importe quel enseignant ou orthoptiste de modifier les dimensions selon les besoins spécifiques d'un enfant, sans toucher au code de modélisation.</p>
+      <p>Le Centre Évangélique Chrétien est une association cultuelle basée à Noisy-le-Grand. Son site existant ne répondait pas aux attentes des visiteurs, notamment en termes d'accessibilité et d'ergonomie. Ce projet, réalisé dans le cadre du Master MIASHS Technologie et Handicap, avait pour objectif de livrer un site complet, autonome et accessible à un niveau professionnel.</p>
+      <p>Contrairement à un exercice académique, ce site est réellement utilisé par l'association et ses membres. L'exigence d'accessibilité n'était pas une contrainte imposée — c'était l'objectif central du projet.</p>
       <div class="tags-projet" aria-label="Technologies du projet">
-        <span class="tag-projet">SolidPython2</span>
-        <span class="tag-projet">OpenSCAD</span>
-        <span class="tag-projet">Impression 3D</span>
-        <span class="tag-projet">Accessibilité</span>
-        <span class="tag-projet">CAO</span>
+        <span class="tag-projet">PHP</span>
+        <span class="tag-projet">MySQL</span>
+        <span class="tag-projet">HTML/CSS</span>
+        <span class="tag-projet">JavaScript</span>
+        <span class="tag-projet">Figma</span>
+        <span class="tag-projet">WCAG AAA</span>
       </div>
     </section>
 
@@ -371,11 +429,13 @@
       <div class="grid2">
         <div>
           <span class="label problem">Problème</span>
-          <p>Les règles standard sont conçues pour la vision. Les graduations sont imprimées, pas en relief. Les chiffres sont visuels. Pour un enfant malvoyant, ces outils sont inutilisables sans adaptation spécifique et coûteuse.</p>
+          <p>Le site existant avait des problèmes d'accessibilité, une navigation peu claire pour les nouveaux visiteurs, et aucun outil permettant à l'association de mettre à jour ses contenus sans passer par un développeur.</p>
+          <p>Pour une association cultuelle, l'accessibilité n'est pas optionnelle : des membres en situation de handicap visuel ou cognitif doivent pouvoir accéder aux sermons, aux événements et aux ressources spirituelles.</p>
         </div>
         <div>
-          <span class="label solution">Solution</span>
-          <p>Modélisation 100% paramétrique en SolidPython2 générant du code OpenSCAD. Chaque dimension est une variable : longueur totale, espacement des graduations, hauteur des reliefs, taille des chiffres en relief. Une ligne de code suffit à adapter la règle à un nouveau besoin. Export STL direct pour impression 3D.</p>
+          <span class="label solution">Ce qui a été construit</span>
+          <p>10 pages HTML/CSS/JS + PHP/MySQL entièrement développées en solo. Un panel d'administration complet permet à l'équipe de l'association de gérer de manière autonome : événements, sermons, textes de présentation, contenus de la page d'accueil.</p>
+          <p>La vidéo hero de la page d'accueil est contrôlable (lecture, pause, boucle, masquer) avec préférence mémorisée en localStorage. prefers-reduced-motion respecté sur toutes les animations.</p>
         </div>
       </div>
     </section>
@@ -383,63 +443,130 @@
   </div>
 
   <div class="wrap">
-    <section aria-labelledby="code">
-      <h2 id="code">Aperçu de la logique paramétrique</h2>
-      <p>Pas de schéma interactif pour ce projet : la modélisation se lit directement dans le code. Voici une version simplifiée de la logique paramétrique utilisée.</p>
-
-      <pre class="bloc-code"><code># Exemple simplifié — paramètres modifiables
-LONGUEUR     = 200  # mm
-NB_GRADUATIONS = 20
-HAUTEUR_RELIEF = 0.8  # mm perceptible au toucher
-
-def graduation(position, hauteur):
-    return cube([2, hauteur * 3, HAUTEUR_RELIEF])
-           .translate([position, 0, 0])</code></pre>
-    </section>
-  </div>
-
-  <div class="wrap">
-
     <section aria-labelledby="demarche">
       <h2 id="demarche">Démarche technique</h2>
       <div class="process-row">
         <div class="step">
           <div class="step-num">01</div>
-          <div class="step-title">Analyse des besoins</div>
-          <div class="step-desc">Étude des contraintes tactiles : quelle hauteur de relief est perceptible du bout des doigts ? Quel espacement entre graduations évite la confusion ? Recherche sur les standards d'accessibilité physique (hauteur relief minimum 0.5mm, largeur graduation recommandée).</div>
+          <div class="step-title">Conception accessible dès Figma</div>
+          <div class="step-desc">L'accessibilité n'a pas été ajoutée à la fin : chaque choix de maquette — palette de couleurs, typographie, navigation, formulaires — a été guidé par les critères WCAG dès la phase de conception. Palette validée : #B35A00 sur blanc → 7.2:1 (AAA), #235B4B sur blanc → 7.9:1 (AAA), #1A1A1A sur blanc → 18:1 (AAA). Tests multi-navigateurs prévus dès le maquettage.</div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <div class="step-title">Modélisation paramétrique</div>
-          <div class="step-desc">Écriture du modèle en SolidPython2 : chaque élément (corps de règle, graduation courte, graduation longue, chiffre en relief) est une fonction Python qui prend des paramètres. OpenSCAD génère le solide 3D à partir du code. Itérations rapides : modifier un paramètre = régénérer instantanément.</div>
+          <div class="step-title">Développement PHP/MySQL full-stack</div>
+          <div class="step-desc">Architecture : base de données MySQL pour les événements, sermons, groupes et contenus dynamiques. Panel d'administration sécurisé pour la gestion autonome par l'association. Navigation clavier complète : lien d'évitement visible au focus sur chaque page, tabulation logique dans l'ordre de lecture, trap focus sur les modales, touche Échap ferme les menus. Menu burger CSS-only fonctionnel sans JavaScript (JS améliore l'expérience sans la conditionner).</div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
-          <div class="step-title">Impression et validation</div>
-          <div class="step-desc">Export en STL, impression sur imprimante FDM. Vérification tactile des reliefs : hauteur suffisante, arêtes non coupantes, stabilité de la pièce. Ajustements des paramètres selon le retour physique.</div>
+          <div class="step-title">Tests WAVE, NVDA et multi-navigateurs</div>
+          <div class="step-desc">Audit WAVE sur les 6 pages principales : score moyen 9.3/10, zéro erreur, zéro erreur de contraste. Tests lecteur d'écran NVDA complets. Validation sur Firefox, Chrome et Edge. Tests mobiles DevTools (iPhone 14, Samsung S21). Hébergement opérationnel sur le serveur pédagogique de l'Université Paris 8.</div>
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="wrap">
+    <section aria-labelledby="audit-wave">
+      <h2 id="audit-wave">Audit WAVE par page</h2>
+      <p>Détail des scores obtenus sur les 6 pages principales du site, via l'outil d'audit d'accessibilité WAVE.</p>
+      <div class="tableau-wave-conteneur">
+        <table class="tableau-wave">
+          <caption>Résultats audit WAVE par page</caption>
+          <thead>
+            <tr>
+              <th scope="col">Page</th>
+              <th scope="col">Score</th>
+              <th scope="col">Erreurs</th>
+              <th scope="col">Contraste</th>
+              <th scope="col">Alertes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Accueil</th>
+              <td class="score">9.2/10</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <th scope="row">Messages</th>
+              <td class="score">9.1/10</td>
+              <td>0</td>
+              <td>1 ⚠️</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <th scope="row">Qui sommes-nous</th>
+              <td class="score">9.0/10</td>
+              <td>0</td>
+              <td>0</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th scope="row">Nous rencontrer</th>
+              <td class="score">9.4/10</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <th scope="row">Contact</th>
+              <td class="score">9.3/10</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <th scope="row">Confession</th>
+              <td class="score">9.5/10</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
   <section class="results" aria-labelledby="resultats">
     <div class="wrap">
       <h2 id="resultats">Résultats</h2>
       <div class="results-grid">
-        <div class="result-card"><div class="result-num">100%</div><div class="result-label">paramétrique (tout modifiable)</div></div>
-        <div class="result-card"><div class="result-num">0.5mm+</div><div class="result-label">hauteur relief minimum</div></div>
-        <div class="result-card"><div class="result-num">1 ligne</div><div class="result-label">pour adapter à un nouveau besoin</div></div>
-        <div class="result-card"><div class="result-num">Open</div><div class="result-label">fichiers librement réutilisables</div></div>
+        <div class="result-card"><div class="result-num">100%</div><div class="result-label">conformité WCAG 2.1 AA</div></div>
+        <div class="result-card"><div class="result-num">9.3/10</div><div class="result-label">score WAVE moyen</div></div>
+        <div class="result-card"><div class="result-num">10</div><div class="result-label">pages développées</div></div>
+        <div class="result-card"><div class="result-num">0</div><div class="result-label">erreur de contraste</div></div>
       </div>
     </div>
   </section>
 
+  <div class="wrap">
+    <section aria-labelledby="conformite">
+      <h2 id="conformite">Points clés de conformité</h2>
+      <ul class="liste-conformite">
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> Palette AAA — tous les textes courants ≥ 7:1</li>
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> Navigation clavier — lien d'évitement, trap focus, Échap</li>
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> HTML sémantique — landmarks, un seul H1, fil d'Ariane</li>
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> Menu burger CSS-only — fonctionne sans JavaScript</li>
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> Vidéo hero accessible — pause par défaut, 4 contrôles, prefers-reduced-motion respecté</li>
+        <li class="conformite-item"><span class="conformite-icone" aria-hidden="true">✓</span> Formulaires — labels visibles, aria-live pour erreurs, icônes décoratives masquées (aria-hidden)</li>
+      </ul>
+    </section>
+  </div>
+
   <div class="wrap demontre">
     <section aria-labelledby="demontre-titre">
       <h2 id="demontre-titre">Ce que ce projet démontre</h2>
-      <p>Ce projet prouve que l'accessibilité ne se limite pas au numérique. Appliquer une logique de conception inclusive à un objet physique — penser pour les doigts plutôt que pour les yeux — demande la même rigueur méthodologique qu'un audit WCAG.</p>
-      <p>Il démontre aussi ma maîtrise de la modélisation paramétrique (SolidPython2/OpenSCAD) et ma capacité à traduire un besoin utilisateur concret en contraintes techniques précises.</p>
+      <p>Ce projet prouve que l'accessibilité et la qualité technique ne sont pas opposées au design. Chaque contrainte WCAG a structuré les décisions de conception — elle ne les a pas limitées.</p>
+      <p>Il démontre ma capacité à conduire un projet web complet en autonomie, de la prise de contact avec le commanditaire jusqu'à la livraison en production, en maintenant un niveau d'exigence professionnel sur l'ensemble du cycle : UX, développement front-end, back-end, base de données, tests, hébergement.</p>
+    </section>
+
+    <section aria-labelledby="perspectives">
+      <h2 id="perspectives">Perspectives</h2>
+      <p>Le site est conçu pour évoluer avec l'association. Plusieurs axes de développement sont envisagés à court et moyen terme : migration vers un hébergement dédié adapté aux besoins de l'association, sous-titrage des vidéos de sermons pour atteindre pleinement le niveau AAA, formation de l'équipe de communication au back-office, et mise en place de sauvegardes automatiques.</p>
+      <p>À plus long terme, ce travail pose les bases d'une réflexion plus large sur les outils numériques accessibles et abordables pour les associations culturelles et cultuelles — une problématique qui rejoint mon ambition de construire des solutions techniques inclusives pour les communautés habituellement sous-servies par le numérique.</p>
     </section>
   </div>
 </main>
@@ -447,9 +574,9 @@ def graduation(position, hauteur):
 <!-- Navigation entre projets -->
 <div class="wrap">
   <nav class="nav-projets" aria-label="Navigation entre projets">
-    <a href="wall-e.html" class="nav-projet-precedent">← Robot autonome WALL-E</a>
+    <a href="detection-voiture.html" class="nav-projet-precedent">← Détection couleur K-means</a>
     <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
-    <a href="detection-voiture.html" class="nav-projet-suivant">Détection couleur K-means →</a>
+    <a href="exces-site.html" class="nav-projet-suivant">Site e-commerce Excès →</a>
   </nav>
 </div>
 

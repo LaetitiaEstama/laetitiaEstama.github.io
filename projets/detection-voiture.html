@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robot autonome WALL-E | Projet — Laëtitia Estama</title>
+<title>Détection de voitures vertes par segmentation couleur | Projet — Laëtitia Estama</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
@@ -12,11 +12,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
 
-<meta name="description" content="Robot mobile autonome sur plateforme MegaPi Ultimate 2.0, conçu en équipe de cinq pour assister les personnes à mobilité réduite." />
+<meta name="description" content="Détection de voitures vertes par segmentation K-means en espace colorimétrique Lab et rétroprojection d'histogramme, projet de Master MIASHS." />
 
 <!-- Open Graph / Twitter -->
-<meta property="og:title" content="Robot autonome WALL-E — Leyley" />
-<meta property="og:description" content="Robot mobile autonome sur plateforme MegaPi Ultimate 2.0, conçu en équipe de cinq pour assister les personnes à mobilité réduite." />
+<meta property="og:title" content="Détection couleur K-means — Leyley" />
+<meta property="og:description" content="Détection de voitures vertes par segmentation K-means en espace colorimétrique Lab et rétroprojection d'histogramme. Contribution principale : cadre théorique colorimétrique et intégration." />
 <meta property="og:image" content="../img/og-image.png" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="fr_FR" />
@@ -54,8 +54,9 @@
     --purple:#5B4B9A;
     --yellow:#ffc926;
     --rose:#C4005A;
-    --couleur-fond:#18542A;
+    --couleur-fond:#5B4B9A;
     --couleur-accent:#ffc926;
+    --couleur-fond-secondaire:#3d3270;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -136,7 +137,7 @@
 
   header.cover{
     background:var(--couleur-fond);
-    color:var(--cream);
+    color:#fff;
     padding:112px 0 48px;
   }
 
@@ -169,8 +170,7 @@
   }
   .lede{
     font-size:17px;
-    color:var(--cream);
-    opacity:.85;
+    color:#fff;
     max-width:560px;
     margin-bottom:28px;
   }
@@ -180,12 +180,11 @@
     border-radius:8px;
     padding:8px 14px;
     font-size:13px;
-    /* Accessibilité : poids minimum 500 pour la lisibilité du texte des chips */
     font-weight:500;
   }
   .meta-chip b{font-weight:600; color:#fff;}
-  .meta-chip span.sep{color:#A9A49A; margin:0 2px;}
-  .meta-chip .rest{color:#C9C5BB;}
+  .meta-chip span.sep{color:#D8D2EE; margin:0 2px;}
+  .meta-chip .rest{color:#E8E4F5;}
 
   main{padding-top:48px;}
   section{margin-bottom:48px;}
@@ -218,60 +217,65 @@
     padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
   }
 
-  /* Encadré (répartition technique) */
-  .encadre{
-    background:var(--cream);
-    border:2px solid var(--orange);
-    border-radius:12px;
-    padding:18px 20px;
-    margin-top:20px;
-    font-size:14px;
-  }
-  /* Accessibilité : #C44A08 sur fond crème est interdit pour du texte < 24px (contraste insuffisant) */
-  .encadre b{color:#7A2E00;}
-
-  /* Timeline des séances */
-  .timeline{display:flex; flex-direction:column;}
-  .timeline-etape{display:flex; gap:18px; padding-bottom:26px;}
-  .timeline-etape:last-child{padding-bottom:0;}
-  .timeline-point-col{display:flex; flex-direction:column; align-items:center; flex-shrink:0;}
-  .timeline-point{width:14px; height:14px; border-radius:50%; background:var(--couleur-fond); flex-shrink:0;}
-  .timeline-ligne{flex:1; width:2px; background:rgba(24,84,42,0.25); margin-top:4px;}
-  .timeline-etape:last-child .timeline-ligne{display:none;}
-  .timeline-contenu{flex:1; padding-top:1px;}
-  .timeline-titre{font-size:14px; font-weight:700; margin-bottom:4px;}
-  .timeline-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
-
-  .stack-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
-  .stack-card{
-    background:#fff;
-    border:1px solid rgba(0,0,0,0.08);
-    border-radius:12px;
-    padding:16px;
-  }
-  .stack-cat{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;}
-  .stack-cat.captation{color:var(--blue);}
-  .stack-cat.controle{color:#7A2E00;}
-  .stack-cat.diffusion{color:var(--purple);}
-  .stack-items{font-size:13px; line-height:1.8; color:#3a3a3a; list-style:none;}
-
   .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
   .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
   .step-num{
     display:inline-flex; align-items:center; justify-content:center;
-    background:var(--couleur-fond); color:var(--couleur-accent);
+    background:var(--couleur-fond); color:#fff;
     font-family:'Outfit',sans-serif; font-weight:900; font-size:18px;
     padding:4px 12px; border-radius:8px; margin-bottom:10px;
   }
   .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
   .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
 
+  /* Pipeline visuel */
+  .pipeline{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    margin-top:8px;
+  }
+  .pipeline-etape{
+    background:var(--couleur-fond);
+    color:#fff;
+    border-radius:8px;
+    padding:12px 16px;
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    flex:1 1 160px;
+  }
+  .pipeline-etape--secondaire{
+    background:var(--couleur-fond-secondaire);
+  }
+  .pipeline-fleche{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    color:var(--couleur-fond);
+    flex:0 0 auto;
+  }
+  .pipeline-branche{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1 1 220px;
+  }
+  .pipeline-branche-ligne{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .pipeline-branche-ligne .pipeline-etape{flex:1 1 150px;}
+
   .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
-  .results h2{color:var(--couleur-accent); border-bottom-color:var(--couleur-accent);}
+  .results h2{color:var(--yellow); border-bottom-color:var(--yellow);}
   .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
   .result-card{text-align:center;}
-  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; color:var(--couleur-accent);}
-  .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:28px; color:var(--yellow);}
+  .result-label{font-size:12px; color:#E8E4F5; margin-top:4px;}
 
   .demontre{padding-top:48px;}
 
@@ -295,6 +299,8 @@
     .grid2, .stack-grid, .process-row{grid-template-columns:1fr;}
     .results-grid{grid-template-columns:1fr 1fr;}
     .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+    .pipeline{flex-direction:column; align-items:stretch;}
+    .pipeline-fleche{align-self:center;}
   }
 </style>
 </head>
@@ -346,14 +352,14 @@
         <li aria-hidden="true">→</li>
         <li><a href="../index.html#projets">Projets</a></li>
         <li aria-hidden="true">→</li>
-        <li aria-current="page">Robot autonome WALL-E</li>
+        <li aria-current="page">Détection de voitures vertes</li>
       </ol>
     </nav>
-    <span class="eyebrow">Projet · Ingénierie &amp; Systèmes</span>
-    <h1>Robot autonome WALL-E</h1>
-    <p class="lede">M1 MIASHS · Électronique · Projet de groupe</p>
+    <span class="eyebrow">Ingénierie &amp; Systèmes · Traitement du signal</span>
+    <h1>Détection de voitures vertes par segmentation couleur</h1>
+    <p class="lede">M1 MIASHS · Paris 8 · Projet de groupe · Mai 2026</p>
     <div class="meta-row">
-      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Documentation &amp; rapport</span></div>
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Cadrage théorique &amp; colorimétrie</span></div>
       <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2026</span></div>
       <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Terminé</span></div>
     </div>
@@ -365,24 +371,22 @@
 
     <section aria-labelledby="contexte">
       <h2 id="contexte">Contexte</h2>
-      <p>Dans le cadre du Master MIASHS, notre équipe de cinq étudiants a conçu un robot mobile autonome sur la plateforme Makeblock MegaPi Ultimate 2.0. L'objectif applicatif : pallier les limitations motrices d'usagers en récupérant un objet et en le ramenant au point de départ — sans intervention humaine.</p>
-      <p>Le projet a débuté avec une ambition de tri sélectif automatisé, avant d'évoluer vers une mission de service d'assistance, plus réaliste face aux contraintes matérielles découvertes en cours de route.</p>
+      <p>Dans le cadre du cours de Traitement des Signaux en Master MIASHS, notre groupe a développé un système de détection automatique de voitures vertes dans une image bruitée (wooden_cars_noisy.png, 460×460 px).</p>
+      <p>Le défi principal venait de la couleur cible elle-même : les voitures vertes sont peintes dans une teinte pastel peu saturée (R≈0.70, G≈0.71, B≈0.54). Le canal vert ne domine le rouge que très légèrement (ratio G/R≈1.03), ce qui rend le seuillage naïf inopérant et les opérations morphologiques inutilisables — l'érosion sur un noyau 3×3 réduisait le masque de 52 000 à 408 pixels.</p>
       <div class="tags-projet" aria-label="Technologies du projet">
-        <span class="tag-projet">MegaPi</span>
-        <span class="tag-projet">C++ Arduino</span>
         <span class="tag-projet">Python</span>
-        <span class="tag-projet">Robotique</span>
-        <span class="tag-projet">Mécatronique</span>
+        <span class="tag-projet">OpenCV</span>
+        <span class="tag-projet">K-means</span>
+        <span class="tag-projet">Lab</span>
+        <span class="tag-projet">NumPy</span>
+        <span class="tag-projet">sklearn</span>
       </div>
     </section>
 
     <section aria-labelledby="role">
       <h2 id="role">Mon rôle dans le projet</h2>
-      <p>Dans cette équipe de cinq personnes, j'ai assuré la fonction de mémoire collective du projet : tenue du journal de bord des erreurs et des décisions techniques, documentation des anomalies en temps réel à chaque séance, et rédaction du rapport final avec Younes.</p>
-      <p>J'ai également participé au montage et démontage répétés du châssis, nécessaires aux nombreuses reconfigurations imposées par les contraintes physiques découvertes en cours de développement.</p>
-      <div class="encadre">
-        <b>Répartition technique :</b> le codage Python a été mené par Imed et Melissa, la migration C++ embarqué par Imed et Younes, le maquettage de l'application RoboPilot par Melissa et Narimane.
-      </div>
+      <p>Ma contribution principale a porté sur le cadrage théorique et colorimétrique : justification du choix de l'espace Lab face au RGB, analyse des histogrammes des canaux R, G, B pour comprendre pourquoi la couleur pastel rendait le seuillage difficile, et rédaction du rapport final avec Younes Jelinek.</p>
+      <p>Le développement des algorithmes (seuillage RGB, K-means, rétroprojection) a été réalisé en binôme.</p>
     </section>
 
     <section aria-labelledby="probleme-solution">
@@ -390,11 +394,13 @@
       <div class="grid2">
         <div>
           <span class="label problem">Problème</span>
-          <p>La plateforme MegaPi Ultimate 2.0 n'est pas documentée officiellement pour la configuration Robotic Arm Tank. Chaque port, chaque composant, chaque timing a dû être découvert empiriquement — session après session.</p>
+          <p>Une voiture verte pastel dans une image bruitée. Le seuillage RGB échoue : G ne domine R que de 3%. Les opérations morphologiques détruisent le masque (99% des pixels perdus après érosion 3×3). Le bruit de l'image disperse les pixels verts même à l'intérieur de la voiture.</p>
         </div>
         <div>
-          <span class="label solution">Ce que l'équipe a construit</span>
-          <p>Architecture hybride : prototypage rapide en Python (mode esclave) pour calibrer capteurs et déplacements, puis migration vers C++ embarqué pour une autonomie complète sans connexion PC. Algorithme de backtracking LIFO pour le retour HOME : chaque micro-mouvement est consigné, puis exécuté en inverse.</p>
+          <span class="label solution">3 méthodes explorées</span>
+          <p><b>Méthode 1 — Seuillage RGB :</b> filtrage par aire minimale (&gt; 500 px²) à la place des opérations morphologiques. Résultat : 1 voiture détectée, bounding box (x=51, y=167, w=179, h=120).</p>
+          <p><b>Méthode 2 — K-means en espace Lab :</b> K=8 clusters, identification automatique du cluster vert via a* &lt; 120. Plus généraliste, aucun seuil manuel de couleur.</p>
+          <p><b>Méthode 3 — Fusion K-means + rétroprojection :</b> intersection logique AND des deux masques. Réduit les faux positifs de chaque méthode seule.</p>
         </div>
       </div>
     </section>
@@ -402,83 +408,71 @@
   </div>
 
   <div class="wrap">
-    <section aria-labelledby="deroulement">
-      <h2 id="deroulement">Déroulement du projet</h2>
-      <p>Le projet s'est déroulé sur cinq séances de travail en salle. Pas de schéma d'architecture interactif ici : la chronologie ci-dessous reprend le diagramme de Gantt du rapport.</p>
-
-      <div class="timeline" role="list" aria-label="Chronologie des 5 séances de travail">
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séance 1</div>
-            <div class="timeline-desc">Cadrage, choix de la configuration, montage initial et repérage empirique des ports.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 2-3</div>
-            <div class="timeline-desc">Développement du prototype Python et calibration des capteurs et déplacements.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 3-4</div>
-            <div class="timeline-desc">Migration et portage du code en C++ Arduino, recalibration totale des paramètres temporels.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span><span class="timeline-ligne"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Séances 4-5</div>
-            <div class="timeline-desc">Tests intégrés en mode autonome, recalibration finale, finalisation et préparation de la soutenance.</div>
-          </div>
-        </div>
-        <div class="timeline-etape" role="listitem">
-          <div class="timeline-point-col"><span class="timeline-point"></span></div>
-          <div class="timeline-contenu">
-            <div class="timeline-titre">Entre les séances</div>
-            <div class="timeline-desc">Maquette de l'application RoboPilot (Melissa, Narimane) et rédaction du rapport (Younes, Laëtitia), en parallèle des séances en salle.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="wrap">
-
     <section aria-labelledby="demarche">
       <h2 id="demarche">Démarche technique</h2>
       <div class="process-row">
         <div class="step">
           <div class="step-num">01</div>
-          <div class="step-title">Prototypage Python</div>
-          <div class="step-desc">Phase de découverte empirique : cartographie des ports MegaPi un par un, calibration des moteurs à encodeurs, identification du capteur ultrasonique sur la carte d'extension RJ25 (port 8). Chaque bug résolu a établi une règle pour la suite.</div>
+          <div class="step-title">Pourquoi l'espace Lab ?</div>
+          <div class="step-desc">En RGB, luminosité et couleur sont mélangées : une voiture verte à l'ombre semble aussi sombre qu'une voiture noire. L'espace CIE L*a*b* sépare L* (luminosité), a* (axe vert↔rouge) et b* (axe bleu↔jaune). Travailler sur a* seul rend la détection indépendante de l'éclairage. En espace Lab OpenCV, le vert donne a* &lt; 120, le rouge a* &gt; 140 — distinction nette.</div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <div class="step-title">Migration C++ embarqué</div>
-          <div class="step-desc">Réécriture complète du code pour l'ATmega2560. Le même algorithme produit des comportements physiques totalement différents selon l'environnement. Chaque paramètre temporel (durée pivot, distance saisie, délai ultrasonique) a été réévalué indépendamment par expérimentation physique.</div>
+          <div class="step-title">K-means : découverte automatique des couleurs</div>
+          <div class="step-desc">L'image est convertie en Lab puis aplatie en tableau (460×460, 3) → (211600, 3). K-means avec K=8 clusters (sklearn, random_state=42) groupe les pixels par similarité colorimétrique. Les centroïdes sont examinés : cluster vert = a* &lt; 120 dans l'encodage OpenCV. Un masque binaire est construit, nettoyé par morphologie elliptique (OPEN + CLOSE, noyau 7×7).</div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
-          <div class="step-title">Tests en conditions réelles</div>
-          <div class="step-desc">10 tentatives standardisées : même sol, mêmes piles fraîches, même objet cible (&lt; 100g). Validation séquentielle des sous-systèmes avant la boucle complète : trajet aller → scan → approche → saisie → retour HOME.</div>
+          <div class="step-title">Fusion par intersection AND</div>
+          <div class="step-desc">K-means peut inclure des pixels de couleur proche mais distincte. La rétroprojection d'histogramme calcule la signature HSV d'un ROI (lignes 220-290, colonnes 90-190) et projette cette probabilité sur l'image entière. Seuillage automatique Otsu. L'intersection AND des deux masques ne conserve que les pixels acceptés par les deux méthodes simultanément : faux positifs réduits, masque final plus précis.</div>
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="wrap">
+    <section aria-labelledby="pipeline">
+      <h2 id="pipeline">Pipeline de traitement</h2>
+      <p>Vue d'ensemble du chemin suivi par l'image, de la capture brute jusqu'au masque final fusionné.</p>
+      <p class="sr-only">L'image bruitée est d'abord convertie de RGB vers Lab, puis traitée selon deux chemins parallèles : un chemin K-means qui produit un masque A, et un chemin rétroprojection d'histogramme HSV avec seuillage Otsu qui produit un masque B. Les deux masques sont combinés par une intersection logique AND pour obtenir le masque final et la bounding box de la voiture détectée.</p>
+
+      <div class="pipeline" role="group" aria-label="Étapes du pipeline, de l'image bruitée au masque final">
+        <div class="pipeline-etape">Image bruitée 460×460</div>
+        <div class="pipeline-fleche" aria-hidden="true">→</div>
+        <div class="pipeline-etape">Conversion RGB→Lab</div>
+        <div class="pipeline-fleche" aria-hidden="true">→</div>
+
+        <div class="pipeline-branche">
+          <div class="pipeline-branche-ligne">
+            <div class="pipeline-etape">K-means K=8 clusters</div>
+            <div class="pipeline-fleche" aria-hidden="true">→</div>
+            <div class="pipeline-etape">Masque A</div>
+          </div>
+          <div class="pipeline-branche-ligne">
+            <div class="pipeline-etape pipeline-etape--secondaire">ROI → Histogramme HSV</div>
+            <div class="pipeline-fleche" aria-hidden="true">→</div>
+            <div class="pipeline-etape pipeline-etape--secondaire">Rétroprojection + Otsu</div>
+            <div class="pipeline-fleche" aria-hidden="true">→</div>
+            <div class="pipeline-etape pipeline-etape--secondaire">Masque B</div>
+          </div>
+        </div>
+
+        <div class="pipeline-fleche" aria-hidden="true">→</div>
+        <div class="pipeline-etape">Intersection AND</div>
+        <div class="pipeline-fleche" aria-hidden="true">→</div>
+        <div class="pipeline-etape">Masque final + Bounding Box</div>
+      </div>
+    </section>
   </div>
 
   <section class="results" aria-labelledby="resultats">
     <div class="wrap">
       <h2 id="resultats">Résultats</h2>
       <div class="results-grid">
-        <div class="result-card"><div class="result-num">90%</div><div class="result-label">taux de succès (10 tentatives)</div></div>
-        <div class="result-card"><div class="result-num">&lt; 25s</div><div class="result-label">trajet aller sur 6 mètres</div></div>
-        <div class="result-card"><div class="result-num">&lt; 10cm</div><div class="result-label">marge de précision retour HOME</div></div>
-        <div class="result-card"><div class="result-num">45min</div><div class="result-label">autonomie par session (6 piles AA)</div></div>
+        <div class="result-card"><div class="result-num">1</div><div class="result-label">voiture verte détectée</div></div>
+        <div class="result-card"><div class="result-num">3</div><div class="result-label">méthodes comparées</div></div>
+        <div class="result-card"><div class="result-num">K=8</div><div class="result-label">clusters K-means optimaux</div></div>
+        <div class="result-card"><div class="result-num">99%</div><div class="result-label">pixels perdus par érosion naïve (limites morphologiques)</div></div>
       </div>
     </div>
   </section>
@@ -486,8 +480,8 @@
   <div class="wrap demontre">
     <section aria-labelledby="demontre-titre">
       <h2 id="demontre-titre">Ce que ce projet démontre</h2>
-      <p>Ce projet illustre ma capacité à documenter rigoureusement un processus technique complexe, à tracer les erreurs et les décisions en temps réel, et à synthétiser un travail collectif dense dans un rapport académique structuré.</p>
-      <p>Il démontre aussi ma compréhension des systèmes embarqués : la différence entre un modèle asynchrone (Python) et synchrone (C++), les contraintes énergétiques d'un microcontrôleur, et la rigueur que requiert tout projet où le logiciel doit dialoguer avec du matériel physique.</p>
+      <p>Ce projet illustre une compétence clé en traitement du signal : savoir choisir et justifier son espace de travail avant de coder. Passer de RGB à Lab n'est pas un détail d'implémentation — c'est le choix qui rend le problème soluble.</p>
+      <p>Il montre aussi que les outils standards ne s'appliquent pas mécaniquement : les opérations morphologiques, habituellement recommandées pour nettoyer les masques, se sont révélées destructives sur cette image en raison de sa faible saturation. Adapter l'outil au contexte est plus important que de l'appliquer par défaut.</p>
     </section>
   </div>
 </main>
@@ -495,9 +489,9 @@
 <!-- Navigation entre projets -->
 <div class="wrap">
   <nav class="nav-projets" aria-label="Navigation entre projets">
-    <a href="regie-cec.html" class="nav-projet-precedent">← Système de régie live CEC</a>
+    <a href="regle-tactile.html" class="nav-projet-precedent">← Règle tactile pédagogique</a>
     <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
-    <a href="regle-tactile.html" class="nav-projet-suivant">Règle tactile pédagogique →</a>
+    <a href="site-cec.html" class="nav-projet-suivant">Site web associatif CEC →</a>
   </nav>
 </div>
 

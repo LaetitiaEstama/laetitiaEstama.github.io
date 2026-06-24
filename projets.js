@@ -383,7 +383,7 @@ function afficherProjets(projets) {
       : "";
 
     carte.innerHTML =
-      '<span class="carte-barre" aria-hidden="true" style="background-color: ' + projet.couleur_accent + ';"></span>' +
+      '<span class="carte-barre" role="presentation" style="background-color: ' + projet.couleur_accent + ';"></span>' +
       '<div class="carte-projet__contenu">' +
         '<div class="carte-projet__entete">' +
           '<span class="carte-badge-statut ' + classeBadgeStatut(projet.statut) + '">' + projet.statut + '</span>' +

@@ -637,12 +637,16 @@ body:not(.intro-active) .entete {
 
 .carte-badge-statut {
   font-family: var(--police-texte);
-  font-weight: 700;
-  font-size: 0.65rem;
+  /* Accessibilité : texte plus petit que 13px illisible pour beaucoup d'utilisateurs */
+  font-weight: 600;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  padding: 0.25rem 0.6rem;
+  padding: 5px 12px;
   border-radius: 999px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
 }
 

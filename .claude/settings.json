@@ -26,7 +26,8 @@
       "Bash(node verify27.js)",
       "Bash(nohup python3 -m http.server 8230)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8230/index.html)",
-      "Bash(node audit.js)"
+      "Bash(node audit.js)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
