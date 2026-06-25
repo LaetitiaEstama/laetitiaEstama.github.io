@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication visuelle - Centre Évangélique Chrétien | Projet - Laëtitia Estama</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/logo_jaune_mono-favicon-16x16.png" />
+<link rel="icon" type="image/x-icon" href="../img/favicon/logo_jaune_mono-favicon.ico" />
+<link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+<meta name="description" content="Communication visuelle bénévole pour le Centre Évangélique Chrétien depuis 2019 : Instagram, YouTube, flyers événementiels, banderoles et beach flags grand format." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Communication CEC - Leyley" />
+<meta property="og:description" content="Gestion complète de la communication visuelle : templates Instagram, refonte YouTube, flyers événementiels, banderoles grand format, beach flags. Engagement amélioré, feed homogène et professionnel." />
+<meta property="og:image" content="../img/og-image.png" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../img/og-image.png" />
+
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Black.ttf') format('truetype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+
+  :root{
+    --cream:#F5F0E8;
+    --ink:#1A1A1A;
+    --orange:#C44A08;
+    --green:#18542A;
+    --blue:#0C447C;
+    --purple:#5B4B9A;
+    --yellow:#ffc926;
+    --rose:#C4005A;
+    --couleur-fond:#18542A;
+    --couleur-accent:#ffc926;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height:1.6;
+  }
+  a{color:#7A2E00;}
+  a:focus-visible, button:focus-visible{outline:3px solid #7A2E00; outline-offset:2px;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* Lien d'évitement */
+  .lien-evitement{
+    position:absolute; left:1rem; top:-100px;
+    background:var(--ink); color:var(--cream);
+    padding:0.75rem 1.25rem; border-radius:0.5rem;
+    font-weight:600; text-decoration:none;
+    z-index:3000; transition:top .2s ease;
+  }
+  .lien-evitement:focus-visible{top:1rem;}
+
+  /* Navigation pill flottante (identique à index.html) */
+  .nav-pill{
+    position:fixed; top:20px; left:50%; z-index:2000;
+    display:flex; align-items:center; gap:1.25rem;
+    width:calc(100% - 2rem); max-width:700px; margin:0 auto;
+    background:var(--ink); border-radius:999px;
+    padding:0.5rem 0.75rem 0.5rem 0.5rem;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    transform:translateX(-50%);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .nav-pill--reduite{
+    transform:translateX(-50%) scale(0.97);
+    box-shadow:0 12px 40px rgba(0,0,0,0.32);
+  }
+  .nav-logo{flex-shrink:0; height:32px; width:54.75px; overflow:hidden; display:flex;}
+  .nav-logo img{
+    height:62.5px; width:62.5px; max-width:none;
+    margin-left:-4.5px; margin-top:-13.81px;
+  }
+  .nav-liens{display:flex; align-items:center; justify-content:center; gap:1.25rem; flex:1; list-style:none;}
+  .nav-lien{font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:14px; color:#fff; opacity:.7; transition:opacity .2s ease; text-decoration:none;}
+  .nav-lien:hover{opacity:1;}
+  .nav-cta{
+    background:var(--yellow); color:var(--ink);
+    font-family:'Outfit',sans-serif; font-weight:700; font-size:14px;
+    padding:8px 20px; border-radius:999px; white-space:nowrap; flex-shrink:0;
+    transition:background-color .2s ease, color .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .nav-cta:hover{background:#7A2E00; color:#fff;}
+  .nav-burger{
+    display:none; flex-direction:column; justify-content:space-between;
+    gap:4px; width:22px; height:16px; flex-shrink:0;
+    background:none; border:none; cursor:pointer; padding:0;
+  }
+  .nav-burger span{display:block; width:100%; height:2px; background:#fff;}
+  .nav-menu-mobile{
+    position:fixed; inset:0; z-index:1900; background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    transform:translateY(-100%); transition:transform .3s ease;
+  }
+  .nav-menu-mobile--ouvert{transform:translateY(0);}
+  .nav-menu-mobile ul{display:flex; flex-direction:column; align-items:center; gap:2rem; list-style:none;}
+  .nav-menu-mobile a{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.5rem; color:var(--cream); text-decoration:none;}
+
+  @media (max-width:640px){
+    .nav-liens{display:none;}
+    .nav-burger{display:flex;}
+    .nav-pill{gap:.75rem;}
+    .nav-cta{padding:8px 14px; font-size:13px;}
+  }
+
+  header.cover{
+    background:var(--couleur-fond);
+    color:#fff;
+    padding:112px 0 48px;
+  }
+
+  /* Fil d'Ariane */
+  .fil-ariane{
+    list-style:none; display:flex; gap:8px; flex-wrap:wrap;
+    font-size:12px; color:#fff;
+    margin-bottom:20px;
+  }
+  .fil-ariane a{color:#fff; font-weight:500; text-decoration:none;}
+  .fil-ariane a:hover{text-decoration:underline;}
+
+  .eyebrow{
+    display:inline-block;
+    background-color:#1A1A1A;
+    color:var(--couleur-accent);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Outfit',sans-serif;
+    font-weight:900;
+    font-size:clamp(30px,5vw,50px);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .lede{
+    font-size:17px;
+    color:#D8D4CB;
+    max-width:560px;
+    margin-bottom:28px;
+  }
+  .meta-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .meta-chip{
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:500;
+  }
+  .meta-chip b{font-weight:600; color:#fff;}
+  .meta-chip span.sep{color:#A9A49A; margin:0 2px;}
+  .meta-chip .rest{color:#C9C5BB;}
+
+  main{padding-top:48px;}
+  section{margin-bottom:48px;}
+  h2{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--couleur-fond);
+    border-bottom:2px solid var(--couleur-fond);
+    padding-bottom:8px;
+    margin-bottom:20px;
+    display:inline-block;
+  }
+  p{font-size:15px; max-width:680px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .label{
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:8px; display:block;
+  }
+  .label.problem{color:#7A2E00;}
+  .label.solution{color:var(--couleur-fond);}
+
+  /* Tags projet */
+  .tags-projet{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .tag-projet{
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:999px;
+    padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-fond);
+  }
+
+  .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
+  .step-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--couleur-fond); color:var(--couleur-accent);
+    font-family:'Outfit',sans-serif; font-weight:900; font-size:18px;
+    padding:4px 12px; border-radius:8px; margin-bottom:10px;
+  }
+  .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
+  .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
+
+  /* Frise chronologique */
+  .frise{display:flex; flex-direction:column;}
+  .frise-etape{display:flex; gap:18px; padding-bottom:26px;}
+  .frise-etape:last-child{padding-bottom:0;}
+  .frise-point-col{display:flex; flex-direction:column; align-items:center; flex-shrink:0;}
+  .frise-point{width:14px; height:14px; border-radius:50%; background:var(--couleur-accent); border:2px solid var(--couleur-fond); flex-shrink:0;}
+  .frise-ligne{flex:1; width:3px; background:var(--couleur-fond); margin-top:4px;}
+  .frise-etape:last-child .frise-ligne{display:none;}
+  .frise-contenu{flex:1; padding-top:1px;}
+  .frise-annee{font-family:'Outfit',sans-serif; font-weight:700; font-size:14px; color:var(--couleur-fond); margin-bottom:4px;}
+  .frise-desc{font-size:14px; color:var(--ink); line-height:1.5;}
+
+  .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
+  .results h2{color:var(--couleur-accent); border-bottom-color:var(--couleur-accent);}
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .result-card{text-align:center;}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; color:var(--couleur-accent);}
+  .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
+
+  .demontre{padding-top:48px;}
+
+  .wrap.wide{max-width:1140px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* Navigation entre projets */
+  .nav-projets{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:32px 0; border-top:1px solid rgba(0,0,0,0.08);
+    font-size:14px; font-weight:600;
+  }
+  .nav-projets a{color:#7A2E00; text-decoration:none;}
+  .nav-projets a:hover{text-decoration:underline;}
+
+  footer{padding:40px 0 60px;}
+  .back-link{color:#7A2E00; font-size:14px; font-weight:600; text-decoration:none;}
+  .back-link:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    .grid2, .stack-grid, .process-row{grid-template-columns:1fr;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+<!-- Navigation pill flottante -->
+<nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Leyley - retour à l'accueil">
+    <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
+  </a>
+
+  <ul class="nav-liens">
+    <li><a href="../index.html#projets" class="nav-lien">Projets</a></li>
+    <li><a href="../index.html#apropos" class="nav-lien">À propos</a></li>
+    <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+    <li><a href="#" class="nav-lien">Expériences</a></li>
+  </ul>
+
+  <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+
+  <button
+    type="button"
+    class="nav-burger"
+    id="nav-burger"
+    aria-expanded="false"
+    aria-controls="nav-menu-mobile"
+    aria-label="Ouvrir le menu"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Menu mobile en overlay -->
+<div class="nav-menu-mobile" id="nav-menu-mobile">
+  <ul>
+    <li><a href="../index.html#projets">Projets</a></li>
+    <li><a href="../index.html#apropos">À propos</a></li>
+    <li><a href="#">Expériences</a></li>
+  </ul>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="fil-ariane">
+        <li><a href="../index.html">Accueil</a></li>
+        <li aria-hidden="true">→</li>
+        <li><a href="../index.html#projets">Projets</a></li>
+        <li aria-hidden="true">→</li>
+        <li aria-current="page">Communication CEC</li>
+      </ol>
+    </nav>
+    <span class="eyebrow">Graphisme · Motion · Print · Bénévole</span>
+    <h1>Communication visuelle - Centre Évangélique Chrétien</h1>
+    <p class="lede">Bénévole depuis 2019 · Co-responsable multimédia · En cours</p>
+    <div class="meta-row">
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Co-responsable multimédia</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2019-2026</span></div>
+      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">En cours</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="contenu-principal" tabindex="-1">
+  <div class="wrap">
+
+    <section aria-labelledby="contexte">
+      <h2 id="contexte">Contexte</h2>
+      <p>Depuis plus de 5 ans, je suis engagée bénévolement au sein du Centre Évangélique Chrétien comme co-responsable multimédia. Cette mission couvre l'ensemble de la communication visuelle de l'association : réseaux sociaux, vidéo, print grand format, et identité visuelle.</p>
+      <p>Ce n'est pas un projet ponctuel - c'est une responsabilité continue qui m'a permis de développer des compétences réelles dans un contexte d'exigence professionnelle, avec de vrais enjeux de visibilité et d'engagement pour une communauté active.</p>
+      <div class="tags-projet" aria-label="Technologies du projet">
+        <span class="tag-projet">Illustrator</span>
+        <span class="tag-projet">Photoshop</span>
+        <span class="tag-projet">Canva</span>
+        <span class="tag-projet">Meta Business Suite</span>
+        <span class="tag-projet">InDesign</span>
+        <span class="tag-projet">CapCut</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="probleme-solution">
+      <h2 id="probleme-solution">Problème &amp; solution</h2>
+      <div class="grid2">
+        <div>
+          <span class="label problem">Contexte initial</span>
+          <p>En 2019, la communication visuelle du CEC était peu cohérente : pas de charte graphique définie, publications irrégulières, identité visuelle dispersée entre différents bénévoles.</p>
+          <p>L'enjeu : construire une communication professionnelle et cohérente pour une association dont les membres ont des attentes élevées en termes de qualité visuelle - notamment pour les événements à forte affluence.</p>
+        </div>
+        <div>
+          <span class="label solution">Ce qui a été construit</span>
+          <p>Refonte complète de l'identité visuelle Instagram : nouveaux templates cohérents, équilibre entre contenus informatifs, inspirants et pratiques.</p>
+          <p>Refonte YouTube : vignettes, bannière, photo de profil, optimisation descriptions.</p>
+          <p>Flyers et supports print grand format : banderoles, beach flags, affiches pour des événements jusqu'à plusieurs centaines de participants.</p>
+          <p>Stories Instagram animées : interactives, récapitulatifs d'événements, rappels YouTube.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="demarche">
+      <h2 id="demarche">Démarche technique</h2>
+      <div class="process-row">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Refonte identité Instagram</div>
+          <div class="step-desc">Création de templates visuels cohérents avec l'identité de l'association sur Illustrator et Photoshop. Structuration du feed avec un équilibre entre contenus informatifs, inspirants et pratiques. Élaboration de publications régulières valorisant les actions de l'association. Optimisation des légendes et intégration d'appels à l'action clairs. Résultat : feed plus lisible et professionnel, augmentation du trafic vers le site web et la chaîne YouTube.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Refonte YouTube et création de contenu vidéo</div>
+          <div class="step-desc">Mise à jour complète de la chaîne YouTube : vignettes cohérentes avec l'identité visuelle, nouvelle bannière, photo de profil, optimisation des descriptions pour le référencement. Création de stories Instagram animées sur Adobe Animate et CapCut : récapitulatifs d'événements, quiz, sondages, rappels de contenus YouTube.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Print grand format et événementiel</div>
+          <div class="step-desc">Création régulière de flyers pour annoncer les événements : Play Pray Praise, cérémonies de baptême, cultes spéciaux. Réalisation de supports print grand format : banderoles événementielles, beach flags pour la signalétique extérieure, affiches. Collaboration avec les imprimeurs locaux pour la production et la qualité finale.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="frise-titre">
+      <h2 id="frise-titre">Chronologie de l'engagement</h2>
+      <div class="frise" role="list" aria-label="Chronologie de l'engagement multimédia depuis 2019">
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2019</div>
+            <div class="frise-desc">Premiers flyers et supports print.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2020</div>
+            <div class="frise-desc">Refonte de l'identité visuelle Instagram.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2021</div>
+            <div class="frise-desc">Lancement de la chaîne YouTube.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2022</div>
+            <div class="frise-desc">Stories animées et motion design.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2023</div>
+            <div class="frise-desc">Beach flags et banderoles grand format.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span><span class="frise-ligne"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2024</div>
+            <div class="frise-desc">Intégration avec le site web PHP/MySQL.</div>
+          </div>
+        </div>
+        <div class="frise-etape" role="listitem">
+          <div class="frise-point-col"><span class="frise-point"></span></div>
+          <div class="frise-contenu">
+            <div class="frise-annee">2025-2026</div>
+            <div class="frise-desc">Co-responsable multimédia active.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="results" aria-labelledby="resultats">
+    <div class="wrap">
+      <h2 id="resultats">Résultats</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-num">5 ans+</div><div class="result-label">d'engagement continu</div></div>
+        <div class="result-card"><div class="result-num">3 médias</div><div class="result-label">Instagram · YouTube · Print</div></div>
+        <div class="result-card"><div class="result-num">Grand format</div><div class="result-label">banderoles et beach flags</div></div>
+        <div class="result-card"><div class="result-num">En cours</div><div class="result-label">mission active</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap demontre">
+    <section aria-labelledby="demontre-titre">
+      <h2 id="demontre-titre">Ce que ce projet démontre</h2>
+      <p>Ce projet démontre quelque chose qu'aucun projet universitaire ne peut reproduire : la capacité à maintenir une qualité professionnelle dans la durée, avec de vraies contraintes et un vrai public.</p>
+      <p>Il illustre ma polyvalence : je passe du Illustrator au motion design, du print grand format aux stories animées, sans perdre en cohérence visuelle.</p>
+    </section>
+  </div>
+</main>
+
+<!-- Navigation entre projets -->
+<div class="wrap">
+  <nav class="nav-projets" aria-label="Navigation entre projets">
+    <a href="altametris-stand.html" class="nav-projet-precedent">← Habillage Stand SIFER 2025</a>
+    <a href="../index.html#projets" class="nav-projet-retour">Tous les projets</a>
+    <a href="metro-vr.html" class="nav-projet-suivant">Trame de métro en VR →</a>
+  </nav>
+</div>
+
+<footer class="wrap">
+  <a class="back-link" href="../index.html#projets">← Retour aux projets</a>
+</footer>
+
+<!-- projets.js s'auto-initialise (nav-pill au scroll, menu mobile) ;
+     les fonctions liées à la grille de projets et au formulaire se
+     désactivent automatiquement quand leurs éléments sont absents -->
+<script src="../projets.js"></script>
+
+</body>
+</html>
