@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modélisation et intégration VR - Trame de métro | Projet - Laëtitia Estama</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/logo_jaune_mono-apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/logo_jaune_mono-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/logo_jaune_mono-favicon-16x16.png" />
+<link rel="icon" type="image/x-icon" href="../img/favicon/logo_jaune_mono-favicon.ico" />
+<link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/logo_jaune_mono-android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/favicon/logo_jaune_mono-android-chrome-512x512.png" />
+
+<meta name="description" content="Modélisation de l'intérieur d'une rame de métro fermée dans Blender (autodidacte) et intégration dans Unity avec colliders XR Origin pour un déplacement VR fluide." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Trame de métro en VR - Leyley" />
+<meta property="og:description" content="Modélisation de l'intérieur d'une rame de métro fermée dans Blender (autodidacte), intégration dans Unity avec colliders XR Origin pour déplacement VR fluide. Gestion de contraintes matérielles importantes." />
+<meta property="og:image" content="../img/og-image.png" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="../img/og-image.png" />
+
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Black.ttf') format('truetype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit/static/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+
+  :root{
+    --cream:#F5F0E8;
+    --ink:#1A1A1A;
+    --orange:#C44A08;
+    --green:#18542A;
+    --blue:#0C447C;
+    --purple:#5B4B9A;
+    --yellow:#ffc926;
+    --rose:#C4005A;
+    --couleur-fond:#1A1A1A;
+    --couleur-accent:#5B4B9A;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height:1.6;
+  }
+  a{color:#7A2E00;}
+  a:focus-visible, button:focus-visible{outline:3px solid #7A2E00; outline-offset:2px;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* Lien d'évitement */
+  .lien-evitement{
+    position:absolute; left:1rem; top:-100px;
+    background:var(--ink); color:var(--cream);
+    padding:0.75rem 1.25rem; border-radius:0.5rem;
+    font-weight:600; text-decoration:none;
+    z-index:3000; transition:top .2s ease;
+  }
+  .lien-evitement:focus-visible{top:1rem;}
+
+  /* Navigation pill flottante (identique à index.html) */
+  .nav-pill{
+    position:fixed; top:20px; left:50%; z-index:2000;
+    display:flex; align-items:center; gap:1.25rem;
+    width:calc(100% - 2rem); max-width:700px; margin:0 auto;
+    background:var(--ink); border-radius:999px;
+    padding:0.5rem 0.75rem 0.5rem 0.5rem;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    transform:translateX(-50%);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .nav-pill--reduite{
+    transform:translateX(-50%) scale(0.97);
+    box-shadow:0 12px 40px rgba(0,0,0,0.32);
+  }
+  .nav-logo{flex-shrink:0; height:32px; width:54.75px; overflow:hidden; display:flex;}
+  .nav-logo img{
+    height:62.5px; width:62.5px; max-width:none;
+    margin-left:-4.5px; margin-top:-13.81px;
+  }
+  .nav-liens{display:flex; align-items:center; justify-content:center; gap:1.25rem; flex:1; list-style:none;}
+  .nav-lien{font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:14px; color:#fff; opacity:.7; transition:opacity .2s ease; text-decoration:none;}
+  .nav-lien:hover{opacity:1;}
+  .nav-cta{
+    background:var(--yellow); color:var(--ink);
+    font-family:'Outfit',sans-serif; font-weight:700; font-size:14px;
+    padding:8px 20px; border-radius:999px; white-space:nowrap; flex-shrink:0;
+    transition:background-color .2s ease, color .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .nav-cta:hover{background:#7A2E00; color:#fff;}
+  .nav-burger{
+    display:none; flex-direction:column; justify-content:space-between;
+    gap:4px; width:22px; height:16px; flex-shrink:0;
+    background:none; border:none; cursor:pointer; padding:0;
+  }
+  .nav-burger span{display:block; width:100%; height:2px; background:#fff;}
+  .nav-menu-mobile{
+    position:fixed; inset:0; z-index:1900; background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    transform:translateY(-100%); transition:transform .3s ease;
+  }
+  .nav-menu-mobile--ouvert{transform:translateY(0);}
+  .nav-menu-mobile ul{display:flex; flex-direction:column; align-items:center; gap:2rem; list-style:none;}
+  .nav-menu-mobile a{font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1.5rem; color:var(--cream); text-decoration:none;}
+
+  @media (max-width:640px){
+    .nav-liens{display:none;}
+    .nav-burger{display:flex;}
+    .nav-pill{gap:.75rem;}
+    .nav-cta{padding:8px 14px; font-size:13px;}
+  }
+
+  header.cover{
+    background:var(--couleur-fond);
+    color:#fff;
+    padding:112px 0 48px;
+  }
+
+  /* Fil d'Ariane */
+  .fil-ariane{
+    list-style:none; display:flex; gap:8px; flex-wrap:wrap;
+    font-size:12px; color:#fff;
+    margin-bottom:20px;
+  }
+  .fil-ariane a{color:#fff; font-weight:500; text-decoration:none;}
+  .fil-ariane a:hover{text-decoration:underline;}
+
+  .eyebrow{
+    display:inline-block;
+    background-color:var(--couleur-accent);
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Outfit',sans-serif;
+    font-weight:900;
+    font-size:clamp(30px,5vw,50px);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .lede{
+    font-size:17px;
+    color:#D8D4CB;
+    max-width:560px;
+    margin-bottom:28px;
+  }
+  .meta-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .meta-chip{
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:500;
+  }
+  .meta-chip b{font-weight:600; color:#fff;}
+  .meta-chip span.sep{color:#A9A49A; margin:0 2px;}
+  .meta-chip .rest{color:#C9C5BB;}
+
+  main{padding-top:48px;}
+  section{margin-bottom:48px;}
+  h2{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--couleur-fond);
+    border-bottom:2px solid var(--couleur-accent);
+    padding-bottom:8px;
+    margin-bottom:20px;
+    display:inline-block;
+  }
+  p{font-size:15px; max-width:680px;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .label{
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:8px; display:block;
+  }
+  .label.problem{color:var(--couleur-accent);}
+  .label.solution{color:var(--green);}
+
+  /* Tags projet */
+  .tags-projet{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .tag-projet{
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:999px;
+    padding:6px 14px; font-size:12px; font-weight:600; color:var(--couleur-accent);
+  }
+
+  .process-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .step{background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:18px;}
+  .step-num{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--couleur-accent); color:#fff;
+    font-family:'Outfit',sans-serif; font-weight:900; font-size:18px;
+    padding:4px 12px; border-radius:8px; margin-bottom:10px;
+  }
+  .step-title{font-size:14px; font-weight:600; margin-bottom:4px;}
+  .step-desc{font-size:13px; color:#3a3a3a; line-height:1.5;}
+
+  /* Cards phases techniques (remplace un schéma SVG) */
+  .phases-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:8px;
+  }
+  .phase-card{
+    background:#fff;
+    border:1px solid var(--couleur-accent);
+    border-radius:12px;
+    padding:20px;
+  }
+  .phase-icone{
+    color:var(--couleur-accent);
+    margin-bottom:12px;
+  }
+  .phase-titre{
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--couleur-accent);
+    margin-bottom:6px;
+  }
+  .phase-detail{
+    font-size:13px;
+    color:#595959;
+  }
+
+  .results{background:var(--couleur-fond); color:#fff; padding:44px 0; margin-bottom:0;}
+  .results h2{color:var(--couleur-accent); border-bottom-color:var(--couleur-accent);}
+  .results-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .result-card{text-align:center;}
+  .result-num{font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; color:var(--couleur-accent);}
+  .result-label{font-size:12px; color:#C9C5BB; margin-top:4px;}
+
+  .demontre{padding-top:48px;}
+
+  .wrap.wide{max-width:1140px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* Navigation entre projets */
+  .nav-projets{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:32px 0; border-top:1px solid rgba(0,0,0,0.08);
+    font-size:14px; font-weight:600;
+  }
+  .nav-projets a{color:#7A2E00; text-decoration:none;}
+  .nav-projets a:hover{text-decoration:underline;}
+
+  /* Dernière fiche projet : pas de lien "suivant", bouton centré à la place */
+  .cta-fin-projets{
+    text-align:center;
+    padding:8px 0 32px;
+  }
+  .bouton-tous-projets{
+    display:inline-block;
+    background:var(--couleur-accent);
+    color:#fff;
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:background-color .2s ease;
+  }
+  .bouton-tous-projets:hover{background:#1A1A1A;}
+
+  footer{padding:40px 0 60px;}
+  .back-link{color:#7A2E00; font-size:14px; font-weight:600; text-decoration:none;}
+  .back-link:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    .grid2, .stack-grid, .process-row, .phases-grid{grid-template-columns:1fr;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .nav-projets{flex-direction:column; align-items:flex-start; gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#contenu-principal" class="lien-evitement">Aller au contenu</a>
+
+<!-- Navigation pill flottante -->
+<nav class="nav-pill" id="nav-pill" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Leyley - retour à l'accueil">
+    <img src="../img/logo_png/logo_leyley-YELLOW.png" alt="" />
+  </a>
+
+  <ul class="nav-liens">
+    <li><a href="../index.html#projets" class="nav-lien">Projets</a></li>
+    <li><a href="../index.html#apropos" class="nav-lien">À propos</a></li>
+    <!-- TODO : créer la section "Expériences" et mettre à jour ce lien -->
+    <li><a href="#" class="nav-lien">Expériences</a></li>
+  </ul>
+
+  <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+
+  <button
+    type="button"
+    class="nav-burger"
+    id="nav-burger"
+    aria-expanded="false"
+    aria-controls="nav-menu-mobile"
+    aria-label="Ouvrir le menu"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Menu mobile en overlay -->
+<div class="nav-menu-mobile" id="nav-menu-mobile">
+  <ul>
+    <li><a href="../index.html#projets">Projets</a></li>
+    <li><a href="../index.html#apropos">À propos</a></li>
+    <li><a href="#">Expériences</a></li>
+  </ul>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="fil-ariane">
+        <li><a href="../index.html">Accueil</a></li>
+        <li aria-hidden="true">→</li>
+        <li><a href="../index.html#projets">Projets</a></li>
+        <li aria-hidden="true">→</li>
+        <li aria-current="page">Trame de métro en VR</li>
+      </ol>
+    </nav>
+    <span class="eyebrow">3D · Réalité virtuelle · Blender · Unity</span>
+    <h1>Modélisation et intégration VR - Trame de métro</h1>
+    <p class="lede">BUT MMI · Projet 3D/VR · Solo · 2023</p>
+    <div class="meta-row">
+      <div class="meta-chip"><b>Rôle</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Modélisation 3D · Intégration VR</span></div>
+      <div class="meta-chip"><b>Année</b><span class="sep" aria-hidden="true"> · </span><span class="rest">2023</span></div>
+      <div class="meta-chip"><b>Statut</b><span class="sep" aria-hidden="true"> · </span><span class="rest">Terminé</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="contenu-principal" tabindex="-1">
+  <div class="wrap">
+
+    <section aria-labelledby="contexte">
+      <h2 id="contexte">Contexte</h2>
+      <p>Dans le cadre de mon projet tutoré de fin de BUT MMI, j'ai été chargée de modéliser l'intérieur d'une rame de métro fermée pour créer une expérience immersive en réalité virtuelle.</p>
+      <p>N'ayant jamais utilisé Blender auparavant, ce projet représentait un double défi : apprendre un logiciel complexe en autodidacte tout en produisant un livrable exploitable dans Unity pour une démonstration VR. La contrainte matérielle - un ordinateur peu puissant - a imposé des adaptations techniques constantes.</p>
+      <div class="tags-projet" aria-label="Technologies du projet">
+        <span class="tag-projet">Blender</span>
+        <span class="tag-projet">Unity</span>
+        <span class="tag-projet">VR</span>
+        <span class="tag-projet">XR Origin</span>
+        <span class="tag-projet">Modélisation 3D</span>
+        <span class="tag-projet">Réalité virtuelle</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="probleme-solution">
+      <h2 id="probleme-solution">Problème &amp; solution</h2>
+      <div class="grid2">
+        <div>
+          <span class="label problem">Défis techniques</span>
+          <p>Trois contraintes simultanées : Blender appris entièrement en autodidacte, via tutoriels et documentation ; un ordinateur peu puissant, à l'interface difficilement accessible en raison de la taille de l'écran et au logiciel plantant fréquemment ; et une modélisation de rame fermée peu documentée en ligne, les tutoriels couvrant surtout les vues extérieures.</p>
+        </div>
+        <div>
+          <span class="label solution">Ce qui a été construit</span>
+          <p>Modélisation complète de l'intérieur de la rame : sièges, barres de maintien, portes, fenêtres, structure générale.</p>
+          <p>Gestion des matériaux sans shaders complexes : simulation des effets visuels (vitres, métal) en jouant sur les couleurs, l'opacité et la dureté des matériaux - sans solliciter les ressources graphiques.</p>
+          <p>Intégration dans Unity avec XR Origin : colliders sur tous les éléments, déplacement VR fluide sans traverser les objets, expérience testée et validée.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="demarche">
+      <h2 id="demarche">Démarche technique</h2>
+      <div class="process-row">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Apprentissage Blender autodidacte</div>
+          <div class="step-desc">Formation en autodidacte : tutoriels YouTube, documentation officielle Blender, forums spécialisés. Découverte progressive des outils essentiels : mode édition, extrudage, loop cuts, UV mapping basique. Outil Array découvert en cours de projet : il permet de reproduire rapidement plusieurs éléments identiques (sièges, barres de maintien) en maintenant une cohérence dans la modélisation. Sauvegarde systématique pour pallier les plantages fréquents du logiciel.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Modélisation de la rame</div>
+          <div class="step-desc">Modélisation de l'intérieur fermé : structure de la rame, sièges en configuration réelle, barres de maintien verticales et horizontales, portes coulissantes, fenêtres avec simulation de transparence. Contrainte matérielle constante : éviter les shaders complexes et les textures haute résolution pour ne pas saturer la carte graphique. Chaque effet visuel devait être obtenu par des moyens économes en ressources.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Intégration Unity et tests VR</div>
+          <div class="step-desc">Import du modèle Blender dans Unity. Ajout des colliders sur tous les éléments solides pour empêcher l'utilisateur de traverser les objets en VR. Configuration XR Origin pour le déplacement en réalité virtuelle : calibration de la hauteur, limites de déplacement, confort visuel. Tests en conditions réelles avec le casque VR : validation de la fluidité du déplacement et de l'absence de clipping visuel.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="phases">
+      <h2 id="phases">Phases techniques</h2>
+      <p>Trois compétences distinctes mobilisées pour mener ce projet de la modélisation jusqu'à la démonstration VR.</p>
+
+      <div class="phases-grid">
+        <div class="phase-card">
+          <svg class="phase-icone" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/>
+            <path d="M4 7l8 4 8-4"/>
+            <line x1="12" y1="11" x2="12" y2="21"/>
+          </svg>
+          <h3 class="phase-titre">Blender</h3>
+          <p class="phase-detail">Modélisation 3D · Array · UV mapping</p>
+        </div>
+        <div class="phase-card">
+          <svg class="phase-icone" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 3c-4.97 0-9 3.806-9 8.5 0 4.142 3.358 7.5 7.2 7.5.84 0 1.6-.672 1.6-1.5 0-.39-.15-.74-.39-1.01-.24-.27-.39-.62-.39-1.01 0-.83.76-1.5 1.6-1.5H14c3.31 0 6-2.46 6-5.49C20 5.96 16.42 3 12 3Z"/>
+            <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="10.5" cy="7.5" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="15" cy="7.5" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="17" cy="11" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+          <h3 class="phase-titre">Matériaux</h3>
+          <p class="phase-detail">Sans shaders complexes · Optimisation GPU</p>
+        </div>
+        <div class="phase-card">
+          <svg class="phase-icone" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M5 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2.2a1.5 1.5 0 0 0-1.1.48l-1.2 1.3a.7.7 0 0 1-1 0l-1.2-1.3A1.5 1.5 0 0 0 9 16H7a2 2 0 0 1-2-2V8Z"/>
+            <circle cx="9" cy="11" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="15" cy="11" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+          <h3 class="phase-titre">Unity VR</h3>
+          <p class="phase-detail">XR Origin · Colliders · Déplacement fluide</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="results" aria-labelledby="resultats">
+    <div class="wrap">
+      <h2 id="resultats">Résultats</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-num">0</div><div class="result-label">expérience Blender avant ce projet</div></div>
+        <div class="result-card"><div class="result-num">XR Origin</div><div class="result-label">déplacement VR fonctionnel</div></div>
+        <div class="result-card"><div class="result-num">Solo</div><div class="result-label">modélisation complète</div></div>
+        <div class="result-card"><div class="result-num">Autodidacte</div><div class="result-label">Blender appris en projet</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap demontre">
+    <section aria-labelledby="demontre-titre">
+      <h2 id="demontre-titre">Ce que ce projet démontre</h2>
+      <p>Ce projet démontre avant tout une capacité d'apprentissage autonome sous contrainte : apprendre Blender from scratch, sur un matériel limité, pour livrer un résultat exploitable en VR - c'est une situation qui préfigure exactement ce qu'on rencontre en ingénierie quand on doit maîtriser un nouvel outil rapidement.</p>
+      <p>Il illustre aussi la capacité à adapter sa méthode de travail aux contraintes matérielles : ne pas pouvoir utiliser les shaders complexes force à trouver des solutions alternatives créatives. L'ingéniosité dans la contrainte est une compétence en soi.</p>
+      <p>Enfin, il prouve que la 3D et la VR font partie de mon spectre de compétences - pas seulement le web et le design graphique.</p>
+    </section>
+  </div>
+</main>
+
+<!-- Navigation entre projets : dernière fiche, pas de projet suivant -->
+<div class="wrap">
+  <nav class="nav-projets" aria-label="Navigation entre projets">
+    <a href="cec-social.html" class="nav-projet-precedent">← Communication CEC</a>
+  </nav>
+  <div class="cta-fin-projets">
+    <a href="../index.html#projets" class="bouton-tous-projets">Voir tous les projets ↗</a>
+  </div>
+</div>
+
+<footer class="wrap">
+  <a class="back-link" href="../index.html#projets">← Retour aux projets</a>
+</footer>
+
+<!-- projets.js s'auto-initialise (nav-pill au scroll, menu mobile) ;
+     les fonctions liées à la grille de projets et au formulaire se
+     désactivent automatiquement quand leurs éléments sont absents -->
+<script src="../projets.js"></script>
+
+</body>
+</html>
